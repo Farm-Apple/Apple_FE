@@ -8,7 +8,8 @@ const HomePage: React.FC = () => {
           <Layout>
               <p>Home Page</p>
           </Layout>
-      </>)
+      </>
+  )
 }
 
 export default HomePage
