@@ -1,18 +1,14 @@
-import React from "react";
-import PageLayout from "../../components/PageLayout.tsx";
-import Introduction from "./Introduction.tsx";
-
+import React from 'react';
+import PageLayout from '../../components/PageLayout.tsx';
 
 const HomePage: React.FC = () => {
+  return (
+    <>
+      <PageLayout>
 
+      </PageLayout>
+    </>
+  );
+};
 
-  return(
-      <>
-          <PageLayout>
-            <Introduction/>
-          </PageLayout>
-      </>
-  )
-}
-
-export default HomePage
+export default HomePage;
