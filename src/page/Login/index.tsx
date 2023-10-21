@@ -10,12 +10,12 @@ const LoginContainer = styled.section`
   align-items: center;
 `;
 const LoginForm = styled.form`
-  width: 520px;
+  width: 52rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1.2em;
+  padding: 1.2rem;
 `;
 const IdPwWrapper = styled.div`
   border-radius: 10px;
