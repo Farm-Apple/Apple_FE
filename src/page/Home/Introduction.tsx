@@ -15,9 +15,8 @@ const slideIn = keyframes`
 
 const IntroductionContainer = styled.section`
   height:100vh;
-  background: url(${mainApple});
+  background: url(${mainApple}) no-repeat;
   background-size:cover;
-  background-repeat: no-repeat;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -25,8 +24,8 @@ const IntroductionContainer = styled.section`
 `
 
 const IntroductionTitle = styled.h2`
-  font-size: 4em;
-  color: #e14444;
+  font-size: 5em;
+  color: #f39e9e;
   text-align: center;
   animation: ${slideIn} 2s ease forwards;
 `
@@ -54,9 +53,9 @@ const Introduction: React.FC = () => {
         <>
             <IntroductionContainer>
                 <IntroductionTitle>
-                    우리 농장 사과는 진짜 맛있는데,<br/> 뭐라 설명할 방법이 없네요
+                    Welcome Family Farm
                 </IntroductionTitle>
-                <IntroductionButton>우리농장 사과 사러가기</IntroductionButton>
+                <IntroductionButton>Buy Now !</IntroductionButton>
             </IntroductionContainer>
         </>
     )
