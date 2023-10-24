@@ -12,6 +12,18 @@ const slideIn = keyframes`
   }
 `;
 
+const slideInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-150px); /* 초기 위치 설정 */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* 최종 위치 설정 */
+  }
+`;
+
+
 const ProductTypeContainer = styled.section`
   height:100vh;
   display:flex;
@@ -24,7 +36,7 @@ const ProductTypeTitle = styled.h2`
   font-size: 5em;
   color: #f39e9e;
   text-align: center;
-  animation: ${slideIn} 3s ease forwards;
+  animation: ${slideInLeft} 3s ease forwards;
 `
 
 const ProductTypeButton = styled.button`
@@ -48,22 +60,27 @@ const ProductType: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {
+        function handleScroll() {
             const section = document.getElementById('productTypeSection');
-            if(section){
-                const sectionPosition = section.getBoundingClientRect().top;
-                if(sectionPosition < window.innerHeight){
+            if (section) {
+                const sectionPosition = section.getBoundingClientRect();
+                const sectionCenter = sectionPosition.top + sectionPosition.height / 2;
+                const windowCenter = window.innerHeight / 2;
+
+                if (Math.abs(sectionCenter - windowCenter) < sectionPosition.height / 2) {
                     setIsVisible(true);
+                } else {
+                    setIsVisible(false);
                 }
             }
         }
 
         window.addEventListener('scroll', handleScroll);
+        handleScroll(); // 초기 페이지 로드 시 상태 설정
         return () => {
             window.removeEventListener('scroll', handleScroll);
-        }
-    }, [])
-
+        };
+    }, []);
 
     return(
         <>
