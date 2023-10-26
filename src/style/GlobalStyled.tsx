@@ -6,14 +6,22 @@ const GlobalStyled = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-
-  body {
+  html {
     font-size: 62.5%;
+  }
+  body {
     
   }
 
   a {
     text-decoration: none;
+  }
+  .hidden {
+    position: absolute;
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
   }
 `;
 
