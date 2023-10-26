@@ -24,19 +24,19 @@ const IntroductionContainer = styled.section`
 `
 
 const IntroductionTitle = styled.h2`
-  font-size: 5em;
+  font-size: 5rem;
   color: #f39e9e;
   text-align: center;
   animation: ${slideIn} 2s ease forwards;
 `
 
 const IntroductionButton = styled.button`
-  padding:1em;
-  margin-top:2em;
+  padding:1rem;
+  margin-top:2rem;
   background-color: red;
   color:white;
-  border-radius:1em;
-  font-size:2em;
+  border-radius:1rem;
+  font-size:2rem;
   border:none;
   cursor:pointer;
   animation: ${slideIn} 2s ease forwards;

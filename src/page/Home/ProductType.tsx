@@ -36,40 +36,40 @@ const ProductTypeContainer = styled.section`
 `
 
 const ProductTypeCard = styled.div`
-  width: 40em;
-  padding: 4em 0;
+  width: 40rem;
+  padding: 4rem 0;
   display:flex;
   flex-direction: column;
   align-items: center;
-  gap:2em;
-  border-radius: 1em;
+  gap:2rem;
+  border-radius: 1rem;
   border: 1px solid black;
   
 `
 
 const ProductTypeTitle = styled.h2`
-  font-size: 4em;
+  font-size: 4rem;
   color: #f39e9e;
   text-align: center;
 `
 
 const ProductTypeImg = styled.div`
   width:100%;
-  height:20em;
+  height:20rem;
   background-color:gray;
 `
 
 const ProductTypeDesc = styled.p`
-  font-size:1.4em;
+  font-size:1.4rem;
 `
 
 const ProductTypeButton = styled.button`
-  padding:1em 10em;
-  margin-top:2em;
+  padding:1rem 10rem;
+  margin-top:2rem;
   background-color: red;
   color:white;
-  border-radius:1em;
-  font-size:2em;
+  border-radius:1rem;
+  font-size:2rem;
   border:none;
   cursor:pointer;
   animation: ${slideIn} 3s ease forwards;
@@ -81,7 +81,7 @@ const ProductTypeButton = styled.button`
 
 const CustomSwiper = styled(Swiper)`
   width:100%;
-  padding:5em;
+  padding:5rem;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -90,13 +90,13 @@ const CustomSwiper = styled(Swiper)`
   .swiper-button-prev{
     &:after{
       color:red;
-      font-size:2em;
+      font-size:2rem;
     }
   }
   .swiper-button-next{
     &:after{
       color:red;
-      font-size:2em;
+      font-size:2rem;
     }
   }
 `
