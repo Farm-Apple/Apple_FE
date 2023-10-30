@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import Logo from '../../assets/images/Title.svg';
 import { signUp } from '../../api/auth/auth';
-import ErrorMsg from '../../components/common/ErrorMsg';
+import ErrorMsg from '../../components/ErrorMsg';
 import { useNavigate } from 'react-router-dom';
 import useInput from '../../hook/useInput';
 
@@ -109,7 +109,7 @@ export default function JoinPage() {
       setPassword(e.target.value);
       setMismatch(passwordCheck !== e.target.value);
     },
-    [passwordCheck]
+    [passwordCheck, setPassword]
   );
 
   const onChangePasswordCheck = useCallback(
@@ -117,7 +117,7 @@ export default function JoinPage() {
       setPasswordCheck(e.target.value);
       setMismatch(password !== e.target.value);
     },
-    [password]
+    [password, setPasswordCheck]
   );
 
   return (
