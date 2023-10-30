@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import HomePage from './page/Home/Home.tsx';
+import HomePage from './page/Home/index.tsx';
 import JoinPage from './page/Join';
 import LoginPage from './page/Login';
 import OrderCompletePage from './page/OrderComplete';
