@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import Logo from '../../assets/images/Title.svg'
+import Logo from '../../assets/images/Title.svg';
 import { signUp } from '../../api/auth/auth';
 import ErrorMsg from '../../components/common/ErrorMsg';
 import { useNavigate } from 'react-router-dom';
+import useInput from '../../hook/useInput';
 
 const Container = styled.div`
   display: flex;
@@ -20,9 +21,9 @@ const FormLayout = styled.form`
   border: 1px solid #000;
   border-radius: 0.5rem;
   background-color: #fbfbfb;
-  width: 420px;
+  width: 42rem;
   padding: 1.8rem;
-  gap: 10px;
+  gap: 1rem;
 `;
 const LabelWrapper = styled.div`
   margin-bottom: 1.6rem;
@@ -58,77 +59,67 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-width: 100%;
-height: 3.5rem;
-font-size: 1.8rem;
-color: #fff;
-background-color: #088804;
-border: 1px solid #088804;
-border-radius: 0.5rem;
+  width: 100%;
+  height: 3.5rem;
+  font-size: 1.8rem;
+  color: #fff;
+  background-color: #088804;
+  border: 1px solid #088804;
+  border-radius: 0.5rem;
 `;
 
 export default function JoinPage() {
-  const [email, setEmail] = useState('');
+  const [email, , onChangeEmail] = useInput<string>('');
+  const [nickName, , onChangeNickName] = useInput('');
+  const [name, , onChangeName] = useInput('');
+  const [phoneNumber, , onChangePhoneNumber] = useInput('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
   const [mismatch, setMismatch] = useState(false);
   const [success, setSuccess] = useState(true);
-  const [name, setName] = useState('');
-  const [nickName, setNickName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
   const navigate = useNavigate();
-  // const [address, setAddress] = useState('');
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!mismatch) {
-      const singUpData = await signUp({
-        email: email,
-        password: password,
-        name: name,
-        nickname: nickName,
-        phone: phoneNumber,
-      });
-      console.log(singUpData);
-      if (singUpData.data.message === '이미 가입한 회원입니다.') {
-        console.log('이미 가입한 아이디 입니다.');
-        setSuccess(false);
-      } else {
-        console.log('가입에 성공했습니다.');
-        navigate('/login');
-        setSuccess(false);
+  const onSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (!mismatch) {
+        const singUpData = await signUp({
+          email: email,
+          password: password,
+          name: name,
+          nickname: nickName,
+          phone: phoneNumber,
+        });
+        console.log(singUpData);
+        if (singUpData.data.message === '이미 가입한 회원입니다.') {
+          console.log('이미 가입한 아이디 입니다.');
+          setSuccess(false);
+        } else {
+          console.log('가입에 성공했습니다.');
+          navigate('/login');
+          setSuccess(false);
+        }
       }
-    }
-  };
+    },
+    [mismatch, email, password, name, nickName, phoneNumber, navigate,]
+  );
 
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
+  const onChangePassword = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setPassword(e.target.value);
+      setMismatch(passwordCheck !== e.target.value);
+    },
+    [passwordCheck]
+  );
 
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    setMismatch(passwordCheck !== e.target.value);
-  };
-  const onChangePasswordCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPasswordCheck(e.target.value);
-    setMismatch(password !== e.target.value);
-  };
+  const onChangePasswordCheck = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setPasswordCheck(e.target.value);
+      setMismatch(password !== e.target.value);
+    },
+    [password]
+  );
 
-  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const onChangeNickName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickName(e.target.value);
-  };
-
-  const onChangePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  // const onChangeAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setAddress(e.target.value);
-  // };
   return (
     <>
       <Container>
@@ -144,7 +135,7 @@ export default function JoinPage() {
               </Label>
               <Input
                 type='email'
-                id={email}
+                id='email'
                 value={email}
                 onChange={onChangeEmail}
                 placeholder='ex: Apple@gmail.com'
@@ -152,11 +143,12 @@ export default function JoinPage() {
               />
             </LabelWrapper>
             <LabelWrapper>
-              <Label>
+              <Label htmlFor='password'>
                 <span>비밀번호</span>
               </Label>
               <Input
                 type='password'
+                id='password'
                 value={password}
                 onChange={onChangePassword}
                 placeholder='문자+특수기호(!,@,#) 8자 이상'
@@ -164,11 +156,12 @@ export default function JoinPage() {
               />
             </LabelWrapper>
             <LabelWrapper>
-              <Label>
+              <Label htmlFor='passwordCheck'>
                 <span>비밀번호 확인</span>
               </Label>
               <Input
                 type='password'
+                id='passwordCheck'
                 value={passwordCheck}
                 onChange={onChangePasswordCheck}
                 placeholder='문자+특수기호(!,@,#) 8자 이상'
@@ -176,11 +169,12 @@ export default function JoinPage() {
               />
             </LabelWrapper>
             <LabelWrapper>
-              <Label>
+              <Label htmlFor='name'>
                 <span>이름</span>
               </Label>
               <Input
                 type='text'
+                id='name'
                 value={name}
                 onChange={onChangeName}
                 placeholder='ex: 김사과'
@@ -188,11 +182,12 @@ export default function JoinPage() {
               />
             </LabelWrapper>
             <LabelWrapper>
-              <Label>
+              <Label htmlFor='nickName'>
                 <span>닉네임</span>
               </Label>
               <Input
                 type='text'
+                id='nickName'
                 value={nickName}
                 onChange={onChangeNickName}
                 placeholder='ex: 애플팜'
@@ -200,11 +195,12 @@ export default function JoinPage() {
               />
             </LabelWrapper>
             <LabelWrapper>
-              <Label>
+              <Label htmlFor='phoneNumber'>
                 <span>전화번호</span>
               </Label>
               <Input
                 type='text'
+                id='phoneNumber'
                 value={phoneNumber}
                 onChange={onChangePhoneNumber}
                 placeholder='ex: 01012341234(- 제외)'
