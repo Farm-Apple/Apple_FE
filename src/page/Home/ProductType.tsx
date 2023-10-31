@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import styled, {keyframes} from "styled-components";
-import {Autoplay, Virtual, Navigation} from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+// @ts-ignore
+import {Autoplay, Virtual, Navigation} from "swiper";
 import "swiper/swiper-bundle.css"
+import applePicture from "../../asset/img/main_apple.jpg"
 
 const slideIn = keyframes`
   from {
@@ -43,8 +45,7 @@ const ProductTypeCard = styled.div`
   align-items: center;
   gap:2rem;
   border-radius: 1rem;
-  border: 1px solid black;
-  
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 `
 
 const ProductTypeTitle = styled.h2`
@@ -56,7 +57,8 @@ const ProductTypeTitle = styled.h2`
 const ProductTypeImg = styled.div`
   width:100%;
   height:20rem;
-  background-color:gray;
+  background:url(${applePicture}) no-repeat center center;
+  background-size: contain;
 `
 
 const ProductTypeDesc = styled.p`
