@@ -146,12 +146,12 @@ const ProductType: React.FC = () => {
                                     delay:5000,
                                 }}
                                 spaceBetween={20}
-                                slidesPerView={3}
+                                slidesPerView={4}
                                 virtual
                                 navigation
                             >
                                 {
-                                    [1,2,3,4,5,6,7,8,9,10].map((value: number) => {
+                                    ["부사","아오리","홍로","양광","홍옥","나리따","맛있는","이쁜","준엽","달달한"].map((value: string | number) => {
                                         return(
                                             <CustomSwiperSlide>
                                                 <ProductTypeCard>

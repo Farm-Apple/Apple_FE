@@ -2,6 +2,7 @@ import React from 'react';
 import PageLayout from '../../components/PageLayout.tsx';
 import Introduction from "./Introduction.tsx";
 import ProductType from "./ProductType.tsx";
+import Footer from "../../components/Footer.tsx";
 
 const HomePage: React.FC = () => {
 
@@ -10,6 +11,7 @@ const HomePage: React.FC = () => {
         <PageLayout>
             <Introduction/>
             <ProductType/>
+            <Footer/>
         </PageLayout>
     </>
   );
