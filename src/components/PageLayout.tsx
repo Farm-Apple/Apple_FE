@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React, {ReactNode} from "react";
 
 const StyledLayout = styled.div`
-  padding: 0 20px;
+    
 `
 
 interface ParentProps {
@@ -12,10 +12,13 @@ interface ParentProps {
 
 const PageLayout: React.FC<ParentProps> = ({children}) => {
     return(
-        <StyledLayout>
+        <>
             <NavBar/>
             {children}
-        </StyledLayout>
+            <StyledLayout>
+
+            </StyledLayout>
+        </>
     )
 }
 
