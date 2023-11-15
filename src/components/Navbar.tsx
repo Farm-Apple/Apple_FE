@@ -9,29 +9,31 @@ const NavBarContainer = styled.nav`
   left:0;
   width:100%;
   z-index: 100;
+  padding:0 10rem;
   background-color:white;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   box-shadow: 0px 1px 5px -2px #bdbdbd;
   border-radius: 0.5em;
 `
 const NavBarLogo = styled(Link)`
-  margin-left:3em;
-  padding-left:3em;
   flex: 0 0 auto;
   font-size: 2em;
   background: url(${LOGO}) no-repeat;
   background-size: contain;
   height:80px;
   width:120px;
-  //border:1px solid black;
+`
+
+const NavBarUlWrap = styled.div`
+  width:100%;
+  display:flex;
+  justify-content: space-around;
 `
 
 const NavBarUl = styled.ul`
   display: flex;
   flex: 0 0 auto;
-  margin: 0 auto;
 `
 
 const NavBarLi = styled(Link)`
@@ -57,11 +59,18 @@ const NavBar: React.FC = () => {
                 <NavBarLogo to="/">
 
                 </NavBarLogo>
-                <NavBarUl>
-                    {/* Link (react-router-dom) 을 사용할때엔 to 를 반드시 작성해야 컴파일 에러가 없습니다. */}
-                    <NavBarLi to="DetailBoard">공지사항</NavBarLi>
-                    <NavBarLi to="ProductOrder">상품 주문</NavBarLi>
-                </NavBarUl>
+                <NavBarUlWrap>
+                    <NavBarUl>
+                        {/* Link (react-router-dom) 을 사용할때엔 to 를 반드시 작성해야 컴파일 에러가 없습니다. */}
+                        <NavBarLi to="Board">농원소개</NavBarLi>
+                        <NavBarLi to="Product">농원소식</NavBarLi>
+                        <NavBarLi to="ProductOrder">쇼핑몰</NavBarLi>
+                        <NavBarLi to="DetailBoard">커뮤니티</NavBarLi>
+                    </NavBarUl>
+                    <NavBarUl>
+                        <NavBarLi to="Login">ㅎㅎ</NavBarLi>
+                    </NavBarUl>
+                </NavBarUlWrap>
             </NavBarContainer>
         </>
 )

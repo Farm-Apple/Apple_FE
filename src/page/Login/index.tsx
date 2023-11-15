@@ -3,7 +3,7 @@ import Logo from '../../assets/images/Title.svg';
 import { Link } from 'react-router-dom';
 
 const LoginContainer = styled.section`
-  height: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

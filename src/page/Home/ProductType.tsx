@@ -17,18 +17,6 @@ const slideIn = keyframes`
   }
 `;
 
-// const slideInLeft = keyframes`
-//   from {
-//     opacity: 0;
-//     transform: translateY(-150px); /* 초기 위치 설정 */
-//   }
-//   to {
-//     opacity: 1;
-//     transform: translateY(0); /* 최종 위치 설정 */
-//   }
-// `;
-
-
 const ProductTypeContainer = styled.section`
   height:100vh;
   display:flex;
