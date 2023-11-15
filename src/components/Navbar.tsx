@@ -2,6 +2,7 @@ import styled from "styled-components";
 import * as React from "react";
 import {Link} from "react-router-dom";
 import LOGO from "../asset/img/familyFarm_logo2.jpeg"
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 const NavBarContainer = styled.nav`
   position:fixed;
@@ -68,7 +69,7 @@ const NavBar: React.FC = () => {
                         <NavBarLi to="DetailBoard">커뮤니티</NavBarLi>
                     </NavBarUl>
                     <NavBarUl>
-                        <NavBarLi to="Login">ㅎㅎ</NavBarLi>
+                        <NavBarLi to="Login"><ShoppingBasketIcon/></NavBarLi>
                     </NavBarUl>
                 </NavBarUlWrap>
             </NavBarContainer>
