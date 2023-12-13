@@ -22,3 +22,9 @@ export const Login = async (loginData: LoginData) => {
   console.log(response.data);
   return response;
 };
+
+export const NaverLogin = async () => {
+  const response = await instance.get('/auth/naver/callback');
+  console.log(response.data);
+  return response;
+};
