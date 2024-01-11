@@ -5,8 +5,10 @@ const NaverTest = () => {
   useEffect(() => {
     const NaverLoginData = async () => {
       const code = new URL(window.location.href).searchParams.get('code');
+      const state = new URL(window.location.href).searchParams.get('state');
       console.log(code);
-      const NaverData = await NaverLogin();
+      console.log(state);
+      const NaverData = await NaverLogin({ code: code, state: state });
       console.log(NaverData);
     };
     NaverLoginData();
