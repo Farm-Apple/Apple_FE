@@ -1,25 +1,35 @@
 import styled from "styled-components";
 import * as React from "react";
+import {ReactNode} from "react";
 import {Link} from "react-router-dom";
 import LOGO from "../asset/img/familyFarm_logo2.jpeg"
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 
-interface PaddingControl {
-    noPadding?: boolean;
+interface ParentProps{
+    children: ReactNode,
+    inScroll: number,
 }
 
-const NavBarContainer = styled.nav`
+interface PaddingControl {
+    noPadding?: boolean;
+    inScroll : number;
+}
+
+
+const NavBarContainer = styled.nav<ParentProps>`
   position:fixed;
   top:0;
   left:0;
   width:100%;
   z-index: 100;
   padding:0 10rem;
-  background-color:white;
+  background-color: ${props => props.inScroll > 0 ? "white" : "transparent"};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0px 1px 5px -2px #bdbdbd;
+  border-top:1px solid white;
+  border-bottom: 1px solid white;
+  box-shadow: ${props => props.inScroll > 0 ? "0px 1px 5px -2px #bdbdbd" : "none"};
   border-radius: 0.5em;
 `
 const NavBarLogo = styled(Link)`
@@ -37,7 +47,7 @@ const NavBarUlWrap = styled.div`
   gap:2rem;
 `
 
-const NavBarUl = styled.ul<PaddingControl>`
+const NavBarUl = styled.ul`
   display: flex;
   align-item: center;
   gap: 2rem;
@@ -48,38 +58,33 @@ const NavBarLi = styled(Link)<PaddingControl>`
   border-radius: 10px;
   cursor: pointer;
   font-size: 1.8rem;
-  color: black;
+  font-weight:bold;
   vertical-align: middle;
-
-  &:hover{
-    text-decoration: underline;
-    box-shadow: inset 2px 2px 10px rgba(255,255,255,.1), inset -5px -8px 8px rgba(0,0,0,.2);
-    transition:.2s;
-  }
+  color: ${props => props.inScroll > 0 ? "black" : "white"};
 `
 
 
-const NavBar: React.FC = () => {
+const NavBar: React.FC<ParentProps> = ({inScroll}) => {
     return(
         <>
-            <NavBarContainer>
+            <NavBarContainer inScroll={inScroll}>
                 <NavBarLogo to="/">
 
                 </NavBarLogo>
                 <NavBarUl>
                     {/* Link (react-router-dom) 을 사용할때엔 to 를 반드시 작성해야 컴파일 에러가 없습니다. */}
-                    <NavBarLi to="Board">농원소개</NavBarLi>
-                    <NavBarLi to="Product">농원소식</NavBarLi>
-                    <NavBarLi to="Product">쇼핑몰</NavBarLi>
-                    <NavBarLi to="DetailBoard">커뮤니티</NavBarLi>
+                    <NavBarLi to="Board" inScroll={inScroll}>농원소개</NavBarLi>
+                    <NavBarLi to="Product" inScroll={inScroll}>농원소식</NavBarLi>
+                    <NavBarLi to="Product" inScroll={inScroll}>쇼핑몰</NavBarLi>
+                    <NavBarLi to="DetailBoard" inScroll={inScroll}>커뮤니티</NavBarLi>
                 </NavBarUl>
                 <NavBarUlWrap>
                     <NavBarUl>
-                        <NavBarLi to="ProductOrder"><ShoppingBasketOutlinedIcon sx={{fontSize:"2.4rem"}}/></NavBarLi>
+                        <NavBarLi to="ProductOrder" inScroll={inScroll}><ShoppingBasketOutlinedIcon sx={{fontSize:"2.4rem"}}/></NavBarLi>
                     </NavBarUl>
-                    <NavBarUl noPadding>
-                        <NavBarLi to="Login" noPadding>로그인</NavBarLi>
-                        <NavBarLi to="Join" noPadding> 회원가입</NavBarLi>
+                    <NavBarUl>
+                        <NavBarLi to="Login" noPadding inScroll={inScroll}>로그인</NavBarLi>
+                        <NavBarLi to="Join" noPadding inScroll={inScroll}> 회원가입</NavBarLi>
                     </NavBarUl>
                 </NavBarUlWrap>
             </NavBarContainer>

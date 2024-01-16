@@ -25,14 +25,20 @@ const CustomSwiper = styled(Swiper)`
 
   .swiper-button-prev{
     &:after {
-      color: red;
+      color: white;
       font-size:4rem;
+      border: 1px solid white;
+      padding: 20px 30px;
+      margin-left:20px;
     }
   }
   .swiper-button-next{
     &:after {
-      color:red;
+      color:white;
       font-size:4rem;
+      border: 1px solid white;
+      padding: 20px 30px;
+      margin-right:20px;
     }
   }
 `

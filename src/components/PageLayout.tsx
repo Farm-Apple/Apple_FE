@@ -1,19 +1,17 @@
 import NavBar from "./Navbar.tsx";
 import styled from "styled-components";
-import React, {ReactNode} from "react";
+import React from "react";
+import {ParentProps} from "../page/Home/Home.tsx";
+
 
 const StyledLayout = styled.div`
     
 `
+const PageLayout: React.FC<ParentProps> = ({children, inScroll}) => {
 
-interface ParentProps {
-    children: ReactNode;
-}
-
-const PageLayout: React.FC<ParentProps> = ({children}) => {
     return(
         <>
-            <NavBar/>
+            <NavBar inScroll={inScroll}/>
             {children}
             <StyledLayout>
 
