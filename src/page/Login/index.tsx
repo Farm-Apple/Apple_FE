@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import useInput from '../../hook/useInput';
 import { useCallback } from 'react';
 import { Login } from '../../api/auth/auth';
-import NaverLoginBtn from '../../components/NaverLoginBtn';
+// import NaverLoginBtn from '../../components/NaverLoginBtn';
 
 const LoginContainer = styled.section`
   height: 100vh;
@@ -39,12 +39,6 @@ const JoinWrapper = styled.div`
   margin-bottom: 0.8rem;
 `;
 
-// const ButtonWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 0.8rem;
-//   width: 100%;
-// `;
 const Label = styled.label`
   & > span {
     display: block;
@@ -123,7 +117,7 @@ function LoginPage() {
             <Button type='submit'>로그인</Button>
           </LoginForm>
           {/* <ButtonWrapper></ButtonWrapper> */}
-          <NaverLoginBtn />
+          {/* <NaverLoginBtn /> */}
         </section>
       </LoginContainer>
     </>

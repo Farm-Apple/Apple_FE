@@ -6,7 +6,6 @@ interface SignUpData {
   name: string;
   nickname: string;
   phone: string;
-  address: string;
 }
 interface LoginData {
   email: string;

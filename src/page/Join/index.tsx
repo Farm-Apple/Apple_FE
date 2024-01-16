@@ -77,7 +77,6 @@ export default function JoinPage() {
   const [passwordCheck, setPasswordCheck] = useState('');
   const [mismatch, setMismatch] = useState(false);
   const [success, setSuccess] = useState(true);
-  const [address, , onChangeAddress] = useInput('');
   const navigate = useNavigate();
 
   const onSubmit = useCallback(
@@ -90,20 +89,16 @@ export default function JoinPage() {
           name: name,
           nickname: nickName,
           phone: phoneNumber,
-          address: address,
         });
-        console.log(singUpData);
         if (singUpData.data.message === '이미 가입한 회원입니다.') {
-          console.log('이미 가입한 아이디 입니다.');
           setSuccess(false);
         } else {
-          console.log('가입에 성공했습니다.');
           navigate('/login');
           setSuccess(false);
         }
       }
     },
-    [mismatch, email, password, name, nickName, phoneNumber, address, navigate]
+    [mismatch, email, password, name, nickName, phoneNumber, navigate]
   );
 
   const onChangePassword = useCallback(
@@ -206,19 +201,6 @@ export default function JoinPage() {
                 value={phoneNumber}
                 onChange={onChangePhoneNumber}
                 placeholder='ex: 01012341234(- 제외)'
-                required
-              />
-            </LabelWrapper>
-            <LabelWrapper>
-              <Label htmlFor='address'>
-                <span>주소</span>
-              </Label>
-              <Input
-                type='text'
-                id='address'
-                value={address}
-                onChange={onChangeAddress}
-                placeholder='도로명 주소'
                 required
               />
             </LabelWrapper>
