@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^20.8.10",
     "@types/swiper": "^6.0.0",
     "axios": "^1.5.1",
     "react": "^18.2.0",

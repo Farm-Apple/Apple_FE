@@ -90,18 +90,15 @@ export default function JoinPage() {
           nickname: nickName,
           phone: phoneNumber,
         });
-        console.log(singUpData);
         if (singUpData.data.message === '이미 가입한 회원입니다.') {
-          console.log('이미 가입한 아이디 입니다.');
           setSuccess(false);
         } else {
-          console.log('가입에 성공했습니다.');
           navigate('/login');
           setSuccess(false);
         }
       }
     },
-    [mismatch, email, password, name, nickName, phoneNumber, navigate,]
+    [mismatch, email, password, name, nickName, phoneNumber, navigate]
   );
 
   const onChangePassword = useCallback(
