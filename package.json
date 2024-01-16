@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@types/node": "^20.8.10",
+    "@types/swiper": "^6.0.0",
     "axios": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "styled-components": "^6.0.8",
-    "styled-reset": "^4.5.1"
+    "styled-reset": "^4.5.1",
+    "swiper": "8.4.6"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
