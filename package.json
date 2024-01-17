@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
+    "@types/node": "^20.8.10",
     "@types/swiper": "^6.0.0",
     "axios": "^1.5.1",
     "react": "^18.2.0",
