@@ -5,8 +5,8 @@ import ProductType from "./ProductType.tsx";
 import Footer from "../../components/Footer.tsx";
 
 export interface ParentProps{
-    children: ReactNode,
-    inScroll: number,
+    children?: ReactNode,
+    inScroll?: number,
 }
 
 const HomePage: React.FC<ParentProps> = () => {
