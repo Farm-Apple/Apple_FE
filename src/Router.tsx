@@ -3,9 +3,10 @@ import HomePage from './page/Home/Home.tsx';
 import JoinPage from './page/Join';
 import LoginPage from './page/Login';
 import OrderCompletePage from './page/OrderComplete';
-import ProductPage from './page/Product';
+import ProductPage from './page/Product/Product.tsx';
 import ProductOrderPage from './page/ProductOrder';
 import DetailBoardPage from "./page/DetailBoard";
+import BoardPage from "./page/Board";
 import NaverTest from './page/NaverTest/index.tsx';
 const router = createBrowserRouter([
   {
@@ -35,10 +36,6 @@ const router = createBrowserRouter([
   {
     path: 'ProductOrder',
     element: <ProductOrderPage />,
-  },
-  {
-    path: 'NaverTest',
-    element: <NaverTest />,
   },
 ],)
 

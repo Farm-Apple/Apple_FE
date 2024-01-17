@@ -1,15 +1,8 @@
-import React, {ReactNode, useEffect, useState} from 'react';
 import PageLayout from '../../components/PageLayout.tsx';
-import Introduction from "./Introduction.tsx";
-import ProductType from "./ProductType.tsx";
 import Footer from "../../components/Footer.tsx";
-
-export interface ParentProps{
-    children: ReactNode,
-    inScroll: number,
-}
-
-const HomePage: React.FC<ParentProps> = () => {
+import {useEffect, useState} from "react";
+import ProductList from "./ProductList.tsx";
+export default function ProductPage() {
 
     const [inScroll, setInScroll] = useState(0);
 
@@ -26,14 +19,9 @@ const HomePage: React.FC<ParentProps> = () => {
     },[inScroll])
 
     return (
-    <>
         <PageLayout inScroll={inScroll}>
-            <Introduction/>
-            <ProductType/>
+            <ProductList/>
             <Footer/>
         </PageLayout>
-    </>
-  );
-};
-
-export default HomePage;
+    )
+  }
