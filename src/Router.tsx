@@ -6,12 +6,11 @@ import OrderCompletePage from './page/OrderComplete';
 import ProductPage from './page/Product/Product.tsx';
 import ProductOrderPage from './page/ProductOrder';
 import DetailBoardPage from "./page/DetailBoard";
-import BoardPage from "./page/Board";
 import NaverTest from './page/NaverTest/index.tsx';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <HomePage/>,
   },
   {
     path: 'DetailBoard',
@@ -36,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: 'ProductOrder',
     element: <ProductOrderPage />,
+  },
+  {
+    path: 'NaverTest',
+    element: <NaverTest />,
   },
 ],)
 
