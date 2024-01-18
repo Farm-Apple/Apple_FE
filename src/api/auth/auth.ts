@@ -33,3 +33,9 @@ export const NaverLogin = async (Param: NaverParams) => {
   console.log(response.data);
   return response;
 };
+
+export const GetProductList = async() => {
+  const response = await instance.get('/products');
+  console.log(response.data);
+  return response.data;
+}
