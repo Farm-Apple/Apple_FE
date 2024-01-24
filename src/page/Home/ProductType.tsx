@@ -4,7 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // @ts-ignore
 import {Autoplay, Virtual, Navigation} from "swiper";
 import "swiper/swiper-bundle.css"
-import applePicture from "../../asset/img/main_apple.jpg"
+import applePicture from "../../asset/img/main_apple.jpg";
+import {GetProductList} from "../../api/auth/auth.ts"
 
 const slideIn = keyframes`
   from {
@@ -94,10 +95,18 @@ const CustomSwiper = styled(Swiper)`
 const CustomSwiperSlide = styled(SwiperSlide)`
   
 `
-
+interface AppleListType{
+    id: number;
+    product_name: string;
+    price: number;
+    weight: string;
+    created_at: string;
+    updated_at: string;
+}
 
 const ProductType: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [AppleList, setAppleList] = useState<AppleListType[]>([]);
 
     useEffect(() => {
         function handleScroll() {
@@ -122,6 +131,12 @@ const ProductType: React.FC = () => {
         };
     }, []);
 
+    useEffect(()=> {
+        GetProductList().then((response) =>
+            setAppleList(response)
+        )
+    },[])
+
     return(
         <>
             <ProductTypeContainer id="productTypeSection">
@@ -139,16 +154,16 @@ const ProductType: React.FC = () => {
                                 navigation
                             >
                                 {
-                                    ["부사","아오리","홍로","양광","홍옥","나리따","맛있는","이쁜","준엽","달달한"].map((value: string | number) => {
+                                    AppleList.map((item) => {
                                         return(
-                                            <CustomSwiperSlide>
+                                            <CustomSwiperSlide key={item.id}>
                                                 <ProductTypeCard>
                                                     <ProductTypeTitle>
-                                                        {value + "사과"}
+                                                        {item.product_name}
                                                     </ProductTypeTitle>
                                                     <ProductTypeImg></ProductTypeImg>
                                                     <ProductTypeDesc>
-                                                        7월 11월엔 00사과 판매
+                                                        무게 : {item.weight}
                                                     </ProductTypeDesc>
                                                 </ProductTypeCard>
                                             </CustomSwiperSlide>
