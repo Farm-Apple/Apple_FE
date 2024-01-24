@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 import { getProductDetail } from '@src/api/auth/product';
 import appleimg from '@img/main_apple.jpg';
 import styled from 'styled-components';
+import QuantitySelect from '@common/QuantitySelect.tsx';
+
 interface ProductProps {
-  id?: number;
-  product_name?: string;
-  price?: number;
-  weight?: string;
-  created_at?: Date;
-  updated_at?: Date;
+  id: number;
+  product_name: string;
+  price: number;
+  weight: string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 /* Layout */
@@ -18,6 +20,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   padding: 3rem 3rem;
+  margin-top: 100px;
 `;
 /* 상품 이미지 */
 const ProductImgSection = styled.section`
@@ -92,7 +95,7 @@ const DetailSelectContainer = styled.div`
     gap: 10px;
   }
 `;
-const ProductSelect = styled.div``;
+
 const PurchaseContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -109,15 +112,31 @@ const FinalQuantity = styled.div``;
 const Amount = styled.div``;
 const BttonWrapper = styled.div``;
 const AdressSurchContainer = styled.div``;
+
 export default function ProductOrderPage() {
-  const [Product, setProduct] = useState<ProductProps>({});
+  const [Product, setProduct] = useState<ProductProps>({
+    id: 0,
+    product_name: '',
+    price: 0,
+    weight: '',
+    created_at: new Date(),
+    updated_at: new Date(),
+  });
+  const [Counter, setCounter] = useState<number>(1);
+  const [Quantity, setQuantity] = useState<number>(0);
 
   useEffect(() => {
     Detail();
   }, []);
+
   const Detail = async () => {
     const data = await getProductDetail(2);
     setProduct(data);
+  };
+  console.log(Product);
+  const handleClickCounter = (number: number) => {
+    setCounter((prev) => prev + number);
+    setQuantity((prev) => prev + Product.price * number);
   };
   return (
     <Container>
@@ -139,15 +158,13 @@ export default function ProductOrderPage() {
           </ProductPrice>
         </PriceContainer>
         <ProudctDescContainer>
-          사과 구매시 전달되는 안내 섹션
           <div>
             선택된 상품종 안내와 농장 장점안내 아오리사과는 이러쿵 저러쿵한
             사과로 보무르여르므가으르겨우르 맛이 좋스무니다.
           </div>
           <div>
-            저희 농장은 선물용 5kg 단위로 판매하고 있으며......줄임 해당 섹션은
-            상품 구성에 대한 내용과 주의할점, 오해하는점, 상품을 받아보는데 까지
-            적영
+            저희 농장은 선물용 5kg 단위로 판매하고 있습니다. 해당 섹션은 상품
+            구성에 대한 내용과 주의할점, 오해하는점, 상품을 받는데 걸리는 시간
           </div>
           <div>
             <span>택배배송 : 3,000원 / 제주, 도서지역 4,000원</span>
@@ -156,12 +173,12 @@ export default function ProductOrderPage() {
         </ProudctDescContainer>
         <DetailSelectContainer>
           <form>
-            <ProductSelect>사과 갯수 선택 +, -</ProductSelect>
+            <QuantitySelect Counter={Counter} onClick={handleClickCounter} />
             <PurchaseContainer>
               <FinalProductContainer>
                 <div>총 상품 금액 : </div>
                 <FinalQuantity>선택 된 상품 수량</FinalQuantity>
-                <Amount>총 상품 금액 25,900</Amount>
+                <Amount>총 상품 금액 {Quantity}</Amount>
               </FinalProductContainer>
               <AdressSurchContainer>
                 <input type='text' placeholder='도로주소' />
