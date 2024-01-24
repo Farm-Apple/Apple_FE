@@ -32,7 +32,7 @@ const PageLayout: React.FC<ParentProps> = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    },[inScroll])
+    },[inScroll, scrollEventIn])
 
     return(
         <>

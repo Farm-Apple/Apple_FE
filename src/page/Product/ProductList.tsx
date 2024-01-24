@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {GetProductList} from "../../api/auth/auth.ts";
 import mainApple from "../../asset/img/main_apple.jpg"
+import {Link} from "react-router-dom";
 
 
 const ProductListContainer = styled.section`
   display: flex;
   justify-content: center;
-  background-color: #bdbdbd;
+  background-color: #efefef;
   padding-top: 20rem;
 `
 
@@ -20,7 +21,7 @@ const ProductListUl = styled.ul`
   flex-wrap:wrap;
 `
 
-const ProductListLi = styled.li`
+const ProductListLi = styled(Link)`
   width:30rem;
   height:30rem;
   display:flex;
@@ -32,6 +33,11 @@ const ProductListLi = styled.li`
   background-color:white;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   cursor:pointer;
+  transition:.3s;
+  color:black;
+  &:hover{
+    transform:scale(1.1);
+  }
 `
 const ProductListTitle = styled.h3`
   font-size:2.4rem;
@@ -43,6 +49,14 @@ const ProductListImg = styled.div`
   height:20rem;
   background:url(${mainApple}) no-repeat center center;
   background-size: contain;
+`
+const ProductDetailButton = styled.button`
+  padding: 1rem 2rem;
+  background-color:white;
+  border-radius:1rem;
+  color:black;
+  border:1px solid black;
+  
 `
 interface AppleListType{
     id: number;
@@ -70,9 +84,10 @@ const ProductList:React.FC = () => {
                 {
                     AppleList.map((item) => {
                         return(
-                            <ProductListLi>
+                            <ProductListLi to="/ProductOrder">
                                 <ProductListTitle>{item.product_name}</ProductListTitle>
                                 <ProductListImg></ProductListImg>
+                                <ProductDetailButton>상세보기</ProductDetailButton>
                             </ProductListLi>
                         )
                     })

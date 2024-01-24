@@ -1,5 +1,9 @@
+import Introduce from "./Introduce.tsx";
+
 export default function DetailBoardPage() {
   return (
-    <p>DetailBoard Page</p>
+    <>
+      <Introduce/>
+    </>
   )
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as React from "react";
 import {Link} from "react-router-dom";
-import LOGO from "../asset/img/familyFarm_logo2.jpeg"
+import LOGO from "../asset/img/familyFarm_logo2.png"
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 
 interface ParentProps{
@@ -102,7 +102,7 @@ const NavBar: React.FC<ParentProps> = ({inScroll, scrollEventIn}) => {
                     <NavBarUl>
                         {/* Link (react-router-dom) 을 사용할때엔 to 를 반드시 작성해야 컴파일 에러가 없습니다. */}
                         <HomeNavBarLi to="/Board" inScroll={inScroll} scrollEventIn={scrollEventIn}>농원소개</HomeNavBarLi>
-                        <HomeNavBarLi to="/Product" inScroll={inScroll} scrollEventIn={scrollEventIn}>농원소식</HomeNavBarLi>
+                        <HomeNavBarLi to="/DetailBoard" inScroll={inScroll} scrollEventIn={scrollEventIn}>농원소식</HomeNavBarLi>
                         <HomeNavBarLi to="/Product" inScroll={inScroll} scrollEventIn={scrollEventIn}>쇼핑몰</HomeNavBarLi>
                         <HomeNavBarLi to="/DetailBoard" inScroll={inScroll} scrollEventIn={scrollEventIn}>커뮤니티</HomeNavBarLi>
                     </NavBarUl>
@@ -124,7 +124,7 @@ const NavBar: React.FC<ParentProps> = ({inScroll, scrollEventIn}) => {
                 <NavBarUl>
                     {/* Link (react-router-dom) 을 사용할때엔 to 를 반드시 작성해야 컴파일 에러가 없습니다. */}
                     <NavBarLi to="/Board" inScroll={inScroll} scrollEventIn={scrollEventIn}>농원소개</NavBarLi>
-                    <NavBarLi to="/Product" inScroll={inScroll} scrollEventIn={scrollEventIn}>농원소식</NavBarLi>
+                    <NavBarLi to="/DetailBoard" inScroll={inScroll} scrollEventIn={scrollEventIn}>농원소식</NavBarLi>
                     <NavBarLi to="/Product" inScroll={inScroll} scrollEventIn={scrollEventIn}>쇼핑몰</NavBarLi>
                     <NavBarLi to="/DetailBoard" inScroll={inScroll} scrollEventIn={scrollEventIn}>커뮤니티</NavBarLi>
                 </NavBarUl>
