@@ -104,12 +104,51 @@ const PurchaseContainer = styled.div`
 
 /* 최종 구매(상품 갯수, 최종금액 확인 후 구매까지) 선택 섹션 */
 const FinalProductContainer = styled.div`
+  margin-bottom: 30px;
   display: flex;
-  flex-direction: row;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
 `;
-const FinalQuantity = styled.div``;
-const Amount = styled.div``;
+const TotalPriceText = styled.p`
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 1.8;
+`;
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const FinalQuantity = styled.p`
+  font-size: 1.8rem;
+  line-height: 1.8;
+  &::after {
+    content: '';
+    margin: auto 12px auto 11px;
+    display: inline-block;
+    height: 18px;
+    width: 1px;
+    background-color: #000;
+    vertical-align: middle;
+  }
+  span {
+    font-weight: 700;
+    color: orange;
+    /* padding: 0.2rem; */
+  }
+`;
+const Amount = styled.p`
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 4.5rem;
+  line-height: 3rem;
+  span {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.3rem;
+    color: orange;
+  }
+`;
 const BttonWrapper = styled.div``;
 const AdressSurchContainer = styled.div``;
 
@@ -123,7 +162,10 @@ export default function ProductOrderPage() {
     updated_at: new Date(),
   });
   const [Counter, setCounter] = useState<number>(1);
-  const [Quantity, setQuantity] = useState<number>(0);
+  const [Quantity, setQuantity] =
+    useState<number>(
+      30000
+    ); /* 상위 컴포넌트 또는 전역상태에서 <상품가격>을 init데이터로*/
 
   useEffect(() => {
     Detail();
@@ -133,7 +175,6 @@ export default function ProductOrderPage() {
     const data = await getProductDetail(2);
     setProduct(data);
   };
-  console.log(Product);
   const handleClickCounter = (number: number) => {
     setCounter((prev) => prev + number);
     setQuantity((prev) => prev + Product.price * number);
@@ -176,9 +217,16 @@ export default function ProductOrderPage() {
             <QuantitySelect Counter={Counter} onClick={handleClickCounter} />
             <PurchaseContainer>
               <FinalProductContainer>
-                <div>총 상품 금액 : </div>
-                <FinalQuantity>선택 된 상품 수량</FinalQuantity>
-                <Amount>총 상품 금액 {Quantity}</Amount>
+                <TotalPriceText>총 상품 금액</TotalPriceText>
+                <Wrapper>
+                  <FinalQuantity>
+                    총 수량 <span>{Counter}</span>개
+                  </FinalQuantity>
+                  <Amount>
+                    {Quantity}
+                    <span>원</span>
+                  </Amount>
+                </Wrapper>
               </FinalProductContainer>
               <AdressSurchContainer>
                 <input type='text' placeholder='도로주소' />
