@@ -10,7 +10,7 @@ export default defineConfig({
       '@public': '/public',
       '@components': '/src/components',
       '@common': '/src/components/common',
-      '@img': '/src/asset/img/'
+      '@img': '/src/assets/images/'
     },
   },
 });

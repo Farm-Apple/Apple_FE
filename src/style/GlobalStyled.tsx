@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import '../assets/fonts/fonts.css';
 
 const GlobalStyled = createGlobalStyle`
   ${reset}
@@ -7,6 +8,7 @@ const GlobalStyled = createGlobalStyle`
     box-sizing: border-box;
   }
   html {
+    font-family: SpoqaHanSansNeo, sans-serif;
     font-size: 62.5%;
   }
   body {

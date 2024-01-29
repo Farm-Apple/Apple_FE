@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // @ts-ignore
 import {Autoplay, Virtual, Navigation} from "swiper";
 import "swiper/swiper-bundle.css"
-import applePicture from "../../asset/img/main_apple.jpg";
+import applePicture from "../../assets/images/main_apple.jpg";
 import {GetProductList} from "../../api/auth/auth.ts"
 
 const slideIn = keyframes`
