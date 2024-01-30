@@ -27,8 +27,7 @@ const ProductTypeContainer = styled.section`
 `
 
 const ProductTypeCard = styled.div`
-  width: 40rem;
-  padding: 4rem 0;
+  padding: 4rem;
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -148,8 +147,8 @@ const ProductType: React.FC = () => {
                                 autoplay={{
                                     delay:5000,
                                 }}
-                                spaceBetween={20}
-                                slidesPerView={4}
+                                spaceBetween={50}
+                                slidesPerView={3.5}
                                 virtual
                                 navigation
                             >
