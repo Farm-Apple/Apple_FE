@@ -10,7 +10,7 @@ const ProductListContainer = styled.section`
   display: flex;
   justify-content: center;
   background-color: white;
-  padding-top: 20rem;
+  padding: 15rem 10rem 0 10rem;
 `
 
 const ProductListUl = styled.ul`
@@ -24,31 +24,36 @@ const ProductListUl = styled.ul`
 
 const ProductListLi = styled(Link)`
   width: calc(100% / 4 - 9rem);
-  display:flex;
-  position:relative;
-  flex-direction:column;
-  justify-content:center;
-  align-items:flex-start;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   border-radius: 2rem;
-  padding:2rem 7rem;
-  background-color:white;
-  //box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  cursor:pointer;
-  color:black;
+  //padding:2rem 0 0 6rem;
+  background-color: white;
+  cursor: pointer;
+  color: black;
+
   &:hover {
-    & > div{
-      //transform:scaleX(-1);
-      opacity:0.2;
+    & {
+      background-color: #FFF8E3;
     }
-    & .MuiSvgIcon-root{
-      opacity:1;
+
+    & > div {
+      opacity: 0.1;
+    }
+
+    & .MuiSvgIcon-root {
+      opacity: 1;
     }
   }
 `
+
 const ProductListImg = styled.div`
-  width:25rem;
+  width:100%;
   height:25rem;
-  align-self:center;
   background:url(${mainApple}) no-repeat center center;
   background-size: cover;
   border-radius:1rem;
@@ -107,7 +112,7 @@ const ProductList:React.FC = () => {
                         return(
                             <ProductListLi to="/ProductOrder" key={item.id}>
                                 <ProductListImg></ProductListImg>
-                                <ShoppingCartIcon sx={{fontSize:"6rem",color:"#739072",position:"absolute",top:"30%",left:"50%",transform:"translateX(-50%)",opacity:"0",transition:"0.3s"}}/>
+                                <ShoppingCartIcon sx={{width: "100%",fontSize:"6rem",color:"#739072",position:"absolute",top:"50%",left:"50%",transform:"translate(-50%, -50%)",opacity:"0",transition:"0.3s"}}/>
                                 {
                                     item.detail ?
                                         <ProductHashTag>#{item.detail}</ProductHashTag>
