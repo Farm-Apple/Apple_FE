@@ -11,7 +11,7 @@ const QuantityContainer = styled.div`
   width: 85px;
   border: 1px solid #000;
   label {
-    background-color: red;
+    /* background-color: red; */
   }
   input {
     width: 100%;
@@ -27,14 +27,18 @@ const QuantityContainer = styled.div`
 const QuantitySelect: React.FC<Props> = ({ Counter, onClick }) => {
   return (
     <QuantityContainer>
-      <button type='button' onClick={() => onClick(+1)}>
-        +
+      <button
+        type='button'
+        disabled={Counter === 1}
+        onClick={() => onClick(-1)}
+      >
+        -
       </button>
       <label>
         <input type='number' value={Counter} min={1} readOnly />
       </label>
-      <button type='button' onClick={() => onClick(-1)}>
-        -
+      <button type='button' disabled={Counter > 9} onClick={() => onClick(+1)}>
+        +
       </button>
     </QuantityContainer>
   );

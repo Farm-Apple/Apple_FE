@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { getProductDetail } from '@src/api/auth/product';
 import appleimg from '@img/main_apple.jpg';
-import styled from 'styled-components';
 import QuantitySelect from '@common/QuantitySelect.tsx';
 
 interface ProductProps {
@@ -134,7 +134,7 @@ const FinalQuantity = styled.p`
   span {
     font-weight: 700;
     color: orange;
-    /* padding: 0.2rem; */
+    padding: 0.2rem;
   }
 `;
 const Amount = styled.p`
@@ -150,7 +150,6 @@ const Amount = styled.p`
   }
 `;
 const BttonWrapper = styled.div``;
-const AdressSurchContainer = styled.div``;
 
 export default function ProductOrderPage() {
   const [Product, setProduct] = useState<ProductProps>({
@@ -228,11 +227,6 @@ export default function ProductOrderPage() {
                   </Amount>
                 </Wrapper>
               </FinalProductContainer>
-              <AdressSurchContainer>
-                <input type='text' placeholder='도로주소' />
-                <input type='text' placeholder='상세주소' />
-                <button type='button'>주소 검색 모달 오픈</button>
-              </AdressSurchContainer>
               <BttonWrapper>
                 <button type='submit'>구매버튼</button>
                 <button type='button'>장바구니 버튼</button>
