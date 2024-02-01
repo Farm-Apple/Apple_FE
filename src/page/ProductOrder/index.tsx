@@ -24,14 +24,12 @@ const Container = styled.div`
 `;
 /* 상품 이미지 */
 const ProductImgSection = styled.section`
-  border: 1px solid red; /* 삭제예정 */
   width: 100%;
   display: flex;
   flex-direction: column;
   max-height: 80rem;
 `;
 const ProductImg = styled.figure`
-  border: 1px solid green; /* 삭제예정 */
   max-width: 80rem;
   margin: 0 auto;
   padding: 1rem;
@@ -43,45 +41,41 @@ const ProductImg = styled.figure`
 `;
 /* 상품 설명 및 구매 섹션 */
 const ProductDescSection = styled.section`
-  border: 1px solid blue;
   width: 100%;
   max-height: 80rem;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1.6rem;
   padding: 1rem;
 `;
 const ProductName = styled.div`
-  border: 2px solid royalblue;
-  font-size: 3rem;
-  font-weight: 900;
+  font-size: 3.6rem;
+  font-weight: 400;
 `;
 const PriceContainer = styled.div`
-  border: 2px solid #000;
 `;
 const ProductPrice = styled.div`
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 3.6rem;
+  font-weight: 700;
   span {
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 1.8rem;
+    font-weight: 400;
   }
 `;
 /* 상품 안내 섹션 */
 const ProudctDescContainer = styled.div`
-  border: 2px solid orange;
   font-size: 1.6rem;
+  font-weight: 300;
   div {
-    border: 2px solid green;
     margin-bottom: 10px;
     &:nth-child(3) {
       margin-bottom: 0;
       display: flex;
       flex-direction: row;
-      gap: 10px;
+      justify-content: space-between;
       span {
-        font-size: 1rem;
-        border: 3px solid #000;
+        font-size: 1.6rem;
+        font-weight: 400;
       }
     }
   }

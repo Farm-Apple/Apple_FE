@@ -18,6 +18,13 @@ const GlobalStyled = createGlobalStyle`
   a {
     text-decoration: none;
   }
+  button {
+    border: none;
+  }
+  input, label {
+    padding: 0;
+    margin: 0;
+  }
   .hidden {
     position: absolute;
     clip-path: inset(50%);
