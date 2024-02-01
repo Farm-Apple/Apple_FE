@@ -52,8 +52,7 @@ const ProductName = styled.div`
   font-size: 3.6rem;
   font-weight: 400;
 `;
-const PriceContainer = styled.div`
-`;
+const PriceContainer = styled.div``;
 const ProductPrice = styled.div`
   font-size: 3.6rem;
   font-weight: 700;
@@ -67,22 +66,22 @@ const ProudctDescContainer = styled.div`
   font-size: 1.6rem;
   font-weight: 300;
   div {
-    margin-bottom: 10px;
+    margin-bottom: 3rem;
     &:nth-child(3) {
       margin-bottom: 0;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       span {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         font-weight: 400;
+        color: #767676;
       }
     }
   }
 `;
 /* 구매상품 상세 선택 섹션 */
 const DetailSelectContainer = styled.div`
-  border: 2px solid red;
   form {
     display: flex;
     flex-direction: column;
@@ -143,8 +142,35 @@ const Amount = styled.p`
     color: orange;
   }
 `;
-const BttonWrapper = styled.div``;
+const Line = styled.div`
+  width: 100%;
+  height: 0.2rem;
+  background-color: rgba(196, 196, 196, 1);
+`;
 
+const BttonWrapper = styled.div`
+  display: flex;
+  gap: 1.4rem;
+`;
+
+const OrderButton = styled.button`
+  font-size: 1.8rem;
+  font-weight: 700;
+  background-color: orange;
+  width: 70%;
+  height: 6rem;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+`;
+const BasketButton = styled.button`
+  font-size: 1.8rem;
+  font-weight: 700;
+  background-color: orange;
+  width: 30%;
+  height: 6rem;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+`;
 export default function ProductOrderPage() {
   const [Product, setProduct] = useState<ProductProps>({
     id: 0,
@@ -207,7 +233,9 @@ export default function ProductOrderPage() {
         </ProudctDescContainer>
         <DetailSelectContainer>
           <form>
+            <Line />
             <QuantitySelect Counter={Counter} onClick={handleClickCounter} />
+            <Line />
             <PurchaseContainer>
               <FinalProductContainer>
                 <TotalPriceText>총 상품 금액</TotalPriceText>
@@ -222,8 +250,8 @@ export default function ProductOrderPage() {
                 </Wrapper>
               </FinalProductContainer>
               <BttonWrapper>
-                <button type='submit'>구매버튼</button>
-                <button type='button'>장바구니 버튼</button>
+                <OrderButton type='submit'>구매버튼</OrderButton>
+                <BasketButton type='button'>장바구니 버튼</BasketButton>
               </BttonWrapper>
             </PurchaseContainer>
           </form>

@@ -8,6 +8,7 @@ type Props = {
 };
 
 const QuantityContainer = styled.div`
+  margin: 3rem 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
