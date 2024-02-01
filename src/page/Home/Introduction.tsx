@@ -47,7 +47,7 @@ const CustomSwiperSlide = styled(SwiperSlide)`
 `
 
 const IntroductionContainer = styled.section`
-  height:100vh;
+  height:70vh;
   background: url(${mainApple}) no-repeat;
   background-size:cover;
   display:flex;

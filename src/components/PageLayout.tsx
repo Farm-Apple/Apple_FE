@@ -7,11 +7,11 @@ import {ParentProps} from "../page/Home/Home.tsx";
 const StyledLayout = styled.div`
     
 `
-const PageLayout: React.FC<ParentProps> = ({children, inScroll}) => {
+const PageLayout: React.FC<ParentProps> = ({children}) => {
 
     return(
         <>
-            <NavBar inScroll={inScroll}/>
+            <NavBar/>
             {children}
             <StyledLayout>
 
