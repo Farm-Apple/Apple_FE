@@ -9,14 +9,13 @@ const ProductTypeContainer = styled.section`
   width:100%;
   padding:10rem;
   display:flex;
-  //justify-content:space-around;
   flex-wrap:wrap;
   gap:3rem;
 `
 const ProductCard = styled(Link)`
   display:flex;
   flex-direction:column;
-  min-width:calc(100% / 4 - 3rem);
+  min-width:calc(100% / 4 - 2.25rem);
   color:black;
   gap:1rem;
 `
@@ -47,6 +46,7 @@ const ProductFromTitle = styled.h4`
   font-size:1.6rem;
   color: #767676;
 `
+
 const ProductTitle = styled.h4`
   font-size:1.8rem;
   color: black;
@@ -89,9 +89,13 @@ const ProductType: React.FC = () => {
                                     <ShoppingCartIcon sx={{width: "100%",fontSize:"6rem",color:"#739072",position:"absolute",top:"50%",left:"50%",transform:"translate(-50%, -50%)"}}/>
                                 </ProductHoverIcon>
                             </ProductCardImage>
-                            <ProductFromTitle>
-                                {item.detail}
-                            </ProductFromTitle>
+                            {item.detail ?
+                                <ProductFromTitle>
+                                    #{item.detail}
+                                </ProductFromTitle>
+                                :
+                                null
+                            }
                             <ProductTitle>
                                 {item.product_name}
                             </ProductTitle>
