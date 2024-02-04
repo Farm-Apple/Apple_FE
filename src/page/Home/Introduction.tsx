@@ -19,6 +19,7 @@ const slideIn = keyframes`
 
 const CustomSwiper = styled(Swiper)`
   width:100%;
+  margin-top:8.2rem;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -47,7 +48,7 @@ const CustomSwiperSlide = styled(SwiperSlide)`
 `
 
 const IntroductionContainer = styled.section`
-  height:100vh;
+  height:60vh;
   background: url(${mainApple}) no-repeat;
   background-size:cover;
   display:flex;
