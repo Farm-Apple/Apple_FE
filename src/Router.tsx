@@ -1,13 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
-import HomePage from './page/Home/Home.tsx';
+import HomePage from './page/Home/Home';
 import JoinPage from './page/Join';
 import LoginPage from './page/Login';
 import OrderCompletePage from './page/OrderComplete';
-import ProductPage from './page/Product/Product.tsx';
+import ProductPage from './page/Product/Product';
 import ProductOrderPage from './page/ProductOrder';
-import DetailBoardPage from "./page/DetailBoard/index.tsx";
-import NaverTest from './page/NaverTest/index.tsx';
-import PageLayout from "./components/PageLayout.tsx";
+import DetailBoardPage from "./page/DetailBoard/index";
+import NaverTest from './page/NaverTest/index';
+import PageLayout from "./components/PageLayout";
 import BoardPage from "./page/Board";
 const router = createBrowserRouter([
   {
