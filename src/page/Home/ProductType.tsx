@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import mainApple from "../../asset/img/main_apple.jpg"
+import mainApple from "../../assets/images/main_apple.jpg"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {GetProductList} from "../../api/auth/auth.ts";
 
