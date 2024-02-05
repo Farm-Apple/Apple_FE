@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as React from "react";
 import {Link} from "react-router-dom";
-import LOGO from "../asset/img/familyFarm_logo2.png"
+import LOGO from "../assets/images/familyFarm_logo2.png"
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 
 const NavBarContainer = styled.nav`
