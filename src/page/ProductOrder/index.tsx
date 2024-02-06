@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { getProductDetail } from '@src/api/auth/product';
 import appleimg from '@img/main_apple.jpg';
@@ -185,13 +186,14 @@ export default function ProductOrderPage() {
     useState<number>(
       30000
     ); /* 상위 컴포넌트 또는 전역상태에서 <상품가격>을 init데이터로*/
+  const { id: pathId } = useParams();
 
   useEffect(() => {
     Detail();
   }, []);
 
   const Detail = async () => {
-    const data = await getProductDetail(2);
+    const data = await getProductDetail(pathId);
     setProduct(data);
   };
   const handleClickCounter = (number: number) => {
