@@ -69,7 +69,6 @@ interface AppleListType {
 }
 const ProductType: React.FC = () => {
   const [AppleList, setAppleList] = useState<AppleListType[]>([]);
-
   useEffect(() => {
     GetProductList().then((response) => setAppleList(response));
   }, []);

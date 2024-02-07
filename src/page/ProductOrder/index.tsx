@@ -177,7 +177,7 @@ export default function ProductOrderPage() {
   const [Product, setProduct] = useState<ProductProps>({
     id: 0,
     product_name: '',
-    price: 0,
+    price: 30000,
     weight: '',
     created_at: new Date(),
     updated_at: new Date(),
@@ -195,28 +195,33 @@ export default function ProductOrderPage() {
     Detail();
   }, [Detail]);
 
-  const handleClickCounter = (number: number) => {
-    setCounter((prev) => prev + number);
-    setQuantity((prev) => prev + Product.price * number);
-  };
+  const handleClickCounter = useCallback(
+    (number: number) => {
+      setCounter((prev) => prev + number);
+      setQuantity((prev) => prev + Product.price * number);
+    },
+    [Product.price]
+  );
+  console.log(Product.price);
+
   return (
     <Container>
       {/* 상품 이미지 섹션 */}
-      <ProductImgSection>
-        <h3 className={'hidden'}>상품 이미지 섹션</h3>
-        <ProductImg>
-          <img src={appleimg} alt='제품1 상세 사진' />
-        </ProductImg>
-      </ProductImgSection>
-      {/* 상품 설명및 구매 섹션 */}
-      <ProductDescSection>
-        <h3 className={'hidden'}>상품 설명및 구매 섹션</h3>
-        {Product.price !== 0 ? (
-          <>
+      {Product.price !== 0 ? (
+        <>
+          <ProductImgSection>
+            <h3 className={'hidden'}>상품 이미지 섹션</h3>
+            <ProductImg>
+              <img src={appleimg} alt='제품1 상세 사진' />
+            </ProductImg>
+          </ProductImgSection>
+          {/* 상품 설명및 구매 섹션 */}
+          <ProductDescSection>
+            <h3 className={'hidden'}>상품 설명및 구매 섹션</h3>
             <ProductName>{Product.product_name}</ProductName>
             <PriceContainer>
               <ProductPrice>
-                {Product.price}
+                {Product.price.toLocaleString()}
                 <span>원</span>
               </ProductPrice>
             </PriceContainer>
@@ -235,37 +240,44 @@ export default function ProductOrderPage() {
                 <span>10만원 이상 구매시 배송비 무료</span>
               </div>
             </ProudctDescContainer>
-          </>
-        ) : (
-          // Product 데이터가 로드되기 전에 표시할 초기 데이터
-          <div>Loading...</div>
-        )}
-        <DetailSelectContainer>
-          <form>
-            <Line />
-            <QuantitySelect Counter={Counter} onClick={handleClickCounter} />
-            <Line />
-            <PurchaseContainer>
-              <FinalProductContainer>
-                <TotalPriceText>총 상품 금액</TotalPriceText>
-                <Wrapper>
-                  <FinalQuantity>
-                    총 수량 <span>{Counter}</span>개
-                  </FinalQuantity>
-                  <Amount>
-                    {Quantity}
-                    <span>원</span>
-                  </Amount>
-                </Wrapper>
-              </FinalProductContainer>
-              <BttonWrapper>
-                <OrderButton type='submit'>구매버튼</OrderButton>
-                <BasketButton type='button'>장바구니 버튼</BasketButton>
-              </BttonWrapper>
-            </PurchaseContainer>
-          </form>
-        </DetailSelectContainer>
-      </ProductDescSection>
+            <DetailSelectContainer>
+              <form>
+                {/* 상품 수량 선택 컴포넌트 */}
+                <Line />
+                <QuantitySelect
+                  Counter={Counter}
+                  onClick={handleClickCounter}
+                />
+                <Line />
+                {/* 상품 구매 정보 */}
+                <PurchaseContainer>
+                  {/* 총 상품 금액 */}
+                  <FinalProductContainer>
+                    <TotalPriceText>총 상품 금액</TotalPriceText>
+                    <Wrapper>
+                      <FinalQuantity>
+                        총 수량 <span>{Counter}</span>개
+                      </FinalQuantity>
+                      <Amount>
+                        {Quantity.toLocaleString()}
+                        <span>원</span>
+                      </Amount>
+                    </Wrapper>
+                  </FinalProductContainer>
+                  {/* 구매 및 장바구니 버튼 */}
+                  <BttonWrapper>
+                    <OrderButton type='submit'>구매버튼</OrderButton>
+                    <BasketButton type='button'>장바구니 버튼</BasketButton>
+                  </BttonWrapper>
+                </PurchaseContainer>
+              </form>
+            </DetailSelectContainer>
+          </ProductDescSection>
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
+      ;
     </Container>
   );
 }

@@ -18,24 +18,24 @@ interface NaverParams extends AxiosRequestConfig<any> {
 
 export const signUp = async (formData: SignUpData) => {
   const response = await instance.post('/users', formData);
-  console.log(response.data);
+
   return response;
 };
 export const Login = async (loginData: LoginData) => {
   const response = await instance.post('/login', loginData);
-  console.log(response.data);
+
   return response;
 };
 
 export const NaverLogin = async (Param: NaverParams) => {
-  console.log(Param);
+
   const response = await instance.get('/auth/naver/callback', Param);
-  console.log(response.data);
+
   return response;
 };
 
 export const GetProductList = async() => {
   const response = await instance.get('/products');
-  console.log(response.data);
+
   return response.data;
 }
