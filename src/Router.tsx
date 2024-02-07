@@ -5,21 +5,21 @@ import LoginPage from './page/Login';
 import OrderCompletePage from './page/OrderComplete';
 import ProductPage from './page/Product/Product';
 import ProductOrderPage from './page/ProductOrder';
-import DetailBoardPage from "./page/DetailBoard/index";
+import DetailBoardPage from './page/DetailBoard/index';
 import NaverTest from './page/NaverTest/index';
-import PageLayout from "./components/PageLayout";
-import BoardPage from "./page/Board";
+import PageLayout from './components/PageLayout';
+import BoardPage from './page/Board';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <PageLayout scrollEventIn/>,
+    element: <PageLayout scrollEventIn />,
     children: [
-      {index: true, element:<HomePage scrollEventIn/>},
-      {path:'DetailBoard', element: <DetailBoardPage/>},
-      {path: 'OrderComplete', element: <OrderCompletePage/>},
-      {path:'Product', element: <ProductPage/>},
-      {path: 'ProductOrder', element: <ProductOrderPage />,},
-      {path: 'Board', element: <BoardPage />,},
+      { index: true, element: <HomePage scrollEventIn /> },
+      { path: 'DetailBoard', element: <DetailBoardPage /> },
+      { path: 'OrderComplete', element: <OrderCompletePage /> },
+      { path: 'Product', element: <ProductPage /> },
+      { path: 'ProductOrder/:id', element: <ProductOrderPage /> },
+      { path: 'Board', element: <BoardPage /> },
     ],
   },
   // {
@@ -54,6 +54,6 @@ const router = createBrowserRouter([
     path: 'NaverTest',
     element: <NaverTest />,
   },
-],)
+]);
 
 export default router;

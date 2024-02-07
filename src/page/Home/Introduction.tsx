@@ -1,7 +1,7 @@
-import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import mainApple from '../../assets/images/main_apple.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Autoplay, Virtual, Navigation } from 'swiper';
 import 'swiper/swiper-bundle.css';
@@ -45,7 +45,7 @@ const CustomSwiper = styled(Swiper)`
 const CustomSwiperSlide = styled(SwiperSlide)``;
 
 const IntroductionContainer = styled.section`
-  height:60vh;
+  height: 60vh;
   background: url(${mainApple}) no-repeat;
   background-size: cover;
   display: flex;
@@ -94,18 +94,20 @@ const Introduction: React.FC = () => {
         virtual
         navigation
       >
-        {['첫번째', '두번째', '세번째'].map((value: string | number) => {
-          return (
-            <CustomSwiperSlide>
-              <IntroductionContainer>
-                <IntroductionTitle>
-                  {value} 사과가 맛있는<span>가족농원</span>
-                </IntroductionTitle>
-                <IntroductionButton>구매하러 가기</IntroductionButton>
-              </IntroductionContainer>
-            </CustomSwiperSlide>
-          );
-        })}
+        {['첫번째', '두번째', '세번째'].map(
+          (value: string | number, index: number) => {
+            return (
+              <CustomSwiperSlide key={index}>
+                <IntroductionContainer>
+                  <IntroductionTitle>
+                    {value} 사과가 맛있는<span>가족농원</span>
+                  </IntroductionTitle>
+                  <IntroductionButton>구매하러 가기</IntroductionButton>
+                </IntroductionContainer>
+              </CustomSwiperSlide>
+            );
+          }
+        )}
       </CustomSwiper>
     </>
   );

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { getProductDetail } from '@src/api/auth/product';
 import appleimg from '@img/main_apple.jpg';
@@ -171,6 +172,7 @@ const BasketButton = styled.button`
   color: rgba(255, 255, 255, 1);
   border-radius: 4px;
 `;
+
 export default function ProductOrderPage() {
   const [Product, setProduct] = useState<ProductProps>({
     id: 0,
@@ -181,82 +183,101 @@ export default function ProductOrderPage() {
     updated_at: new Date(),
   });
   const [Counter, setCounter] = useState<number>(1);
-  const [Quantity, setQuantity] =
-    useState<number>(
-      30000
-    ); /* 상위 컴포넌트 또는 전역상태에서 <상품가격>을 init데이터로*/
+  const [Quantity, setQuantity] = useState<number>(Product.price);
+  const { id: pathId } = useParams();
+
+  const Detail = useCallback(async () => {
+    const data = await getProductDetail(pathId);
+    setProduct(data);
+    setQuantity(data.price)
+  }, [pathId]);
 
   useEffect(() => {
     Detail();
-  }, []);
+  }, [Detail]);
 
-  const Detail = async () => {
-    const data = await getProductDetail(2);
-    setProduct(data);
-  };
-  const handleClickCounter = (number: number) => {
-    setCounter((prev) => prev + number);
-    setQuantity((prev) => prev + Product.price * number);
-  };
+  const handleClickCounter = useCallback(
+    (number: number) => {
+      setCounter((prev) => prev + number);
+      setQuantity((prev) => prev + Product.price * number);
+    },
+    [Product.price]
+  );
+
   return (
     <Container>
       {/* 상품 이미지 섹션 */}
-      <ProductImgSection>
-        <h3 className={'hidden'}>상품 이미지 섹션</h3>
-        <ProductImg>
-          <img src={appleimg} alt='제품1 상세 사진' />
-        </ProductImg>
-      </ProductImgSection>
-      {/* 상품 설명및 구매 섹션 */}
-      <ProductDescSection>
-        <h3 className={'hidden'}>상품 설명및 구매 섹션</h3>
-        <ProductName>{Product.product_name}</ProductName>
-        <PriceContainer>
-          <ProductPrice>
-            {Product.price}
-            <span>원</span>
-          </ProductPrice>
-        </PriceContainer>
-        <ProudctDescContainer>
-          <div>
-            선택된 상품종 안내와 농장 장점안내 아오리사과는 이러쿵 저러쿵한
-            사과로 보무르여르므가으르겨우르 맛이 좋스무니다.
-          </div>
-          <div>
-            저희 농장은 선물용 5kg 단위로 판매하고 있습니다. 해당 섹션은 상품
-            구성에 대한 내용과 주의할점, 오해하는점, 상품을 받는데 걸리는 시간
-          </div>
-          <div>
-            <span>택배배송 : 3,000원 / 제주, 도서지역 4,000원</span>
-            <span>10만원 이상 구매시 배송비 무료</span>
-          </div>
-        </ProudctDescContainer>
-        <DetailSelectContainer>
-          <form>
-            <Line />
-            <QuantitySelect Counter={Counter} onClick={handleClickCounter} />
-            <Line />
-            <PurchaseContainer>
-              <FinalProductContainer>
-                <TotalPriceText>총 상품 금액</TotalPriceText>
-                <Wrapper>
-                  <FinalQuantity>
-                    총 수량 <span>{Counter}</span>개
-                  </FinalQuantity>
-                  <Amount>
-                    {Quantity}
-                    <span>원</span>
-                  </Amount>
-                </Wrapper>
-              </FinalProductContainer>
-              <BttonWrapper>
-                <OrderButton type='submit'>구매버튼</OrderButton>
-                <BasketButton type='button'>장바구니 버튼</BasketButton>
-              </BttonWrapper>
-            </PurchaseContainer>
-          </form>
-        </DetailSelectContainer>
-      </ProductDescSection>
+      {Product.price !== 0 ? (
+        <>
+          <ProductImgSection>
+            <h3 className={'hidden'}>상품 이미지 섹션</h3>
+            <ProductImg>
+              <img src={appleimg} alt='제품1 상세 사진' />
+            </ProductImg>
+          </ProductImgSection>
+          {/* 상품 설명및 구매 섹션 */}
+          <ProductDescSection>
+            <h3 className={'hidden'}>상품 설명및 구매 섹션</h3>
+            <ProductName>{Product.product_name}</ProductName>
+            <PriceContainer>
+              <ProductPrice>
+                {Product.price.toLocaleString()}
+                <span>원</span>
+              </ProductPrice>
+            </PriceContainer>
+            <ProudctDescContainer>
+              <div>
+                선택된 상품종 안내와 농장 장점안내 아오리사과는 이러쿵 저러쿵한
+                사과로 보무르여르므가으르겨우르 맛이 좋스무니다.
+              </div>
+              <div>
+                저희 농장은 선물용 5kg 단위로 판매하고 있습니다. 해당 섹션은
+                상품 구성에 대한 내용과 주의할점, 오해하는점, 상품을 받는데
+                걸리는 시간
+              </div>
+              <div>
+                <span>택배배송 : 3,000원 / 제주, 도서지역 4,000원</span>
+                <span>10만원 이상 구매시 배송비 무료</span>
+              </div>
+            </ProudctDescContainer>
+            <DetailSelectContainer>
+              <form>
+                {/* 상품 수량 선택 컴포넌트 */}
+                <Line />
+                <QuantitySelect
+                  Counter={Counter}
+                  onClick={handleClickCounter}
+                />
+                <Line />
+                {/* 상품 구매 정보 */}
+                <PurchaseContainer>
+                  {/* 총 상품 금액 */}
+                  <FinalProductContainer>
+                    <TotalPriceText>총 상품 금액</TotalPriceText>
+                    <Wrapper>
+                      <FinalQuantity>
+                        총 수량 <span>{Counter}</span>개
+                      </FinalQuantity>
+                      <Amount>
+                        {Quantity.toLocaleString()}
+                        <span>원</span>
+                      </Amount>
+                    </Wrapper>
+                  </FinalProductContainer>
+                  {/* 구매 및 장바구니 버튼 */}
+                  <BttonWrapper>
+                    <OrderButton type='submit'>구매버튼</OrderButton>
+                    <BasketButton type='button'>장바구니 버튼</BasketButton>
+                  </BttonWrapper>
+                </PurchaseContainer>
+              </form>
+            </DetailSelectContainer>
+          </ProductDescSection>
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
+      ;
     </Container>
   );
 }

@@ -4,6 +4,7 @@ import {Outlet} from "react-router-dom";
 
 export interface ParentProps{
     children?: ReactNode,
+    scrollEventIn: boolean;
 }
 const PageLayout: React.FC<ParentProps> = () => {
 
