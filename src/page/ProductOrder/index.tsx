@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { getProductDetail } from '@src/api/auth/product';
@@ -172,6 +172,7 @@ const BasketButton = styled.button`
   color: rgba(255, 255, 255, 1);
   border-radius: 4px;
 `;
+
 export default function ProductOrderPage() {
   const [Product, setProduct] = useState<ProductProps>({
     id: 0,
@@ -182,20 +183,18 @@ export default function ProductOrderPage() {
     updated_at: new Date(),
   });
   const [Counter, setCounter] = useState<number>(1);
-  const [Quantity, setQuantity] =
-    useState<number>(
-      30000
-    ); /* 상위 컴포넌트 또는 전역상태에서 <상품가격>을 init데이터로*/
+  const [Quantity, setQuantity] = useState<number>(Product.price);
   const { id: pathId } = useParams();
+
+  const Detail = useCallback(async () => {
+    const data = await getProductDetail(pathId);
+    setProduct(data);
+  }, [pathId]);
 
   useEffect(() => {
     Detail();
-  }, []);
+  }, [Detail]);
 
-  const Detail = async () => {
-    const data = await getProductDetail(pathId);
-    setProduct(data);
-  };
   const handleClickCounter = (number: number) => {
     setCounter((prev) => prev + number);
     setQuantity((prev) => prev + Product.price * number);
@@ -212,27 +211,35 @@ export default function ProductOrderPage() {
       {/* 상품 설명및 구매 섹션 */}
       <ProductDescSection>
         <h3 className={'hidden'}>상품 설명및 구매 섹션</h3>
-        <ProductName>{Product.product_name}</ProductName>
-        <PriceContainer>
-          <ProductPrice>
-            {Product.price}
-            <span>원</span>
-          </ProductPrice>
-        </PriceContainer>
-        <ProudctDescContainer>
-          <div>
-            선택된 상품종 안내와 농장 장점안내 아오리사과는 이러쿵 저러쿵한
-            사과로 보무르여르므가으르겨우르 맛이 좋스무니다.
-          </div>
-          <div>
-            저희 농장은 선물용 5kg 단위로 판매하고 있습니다. 해당 섹션은 상품
-            구성에 대한 내용과 주의할점, 오해하는점, 상품을 받는데 걸리는 시간
-          </div>
-          <div>
-            <span>택배배송 : 3,000원 / 제주, 도서지역 4,000원</span>
-            <span>10만원 이상 구매시 배송비 무료</span>
-          </div>
-        </ProudctDescContainer>
+        {Product.price !== 0 ? (
+          <>
+            <ProductName>{Product.product_name}</ProductName>
+            <PriceContainer>
+              <ProductPrice>
+                {Product.price}
+                <span>원</span>
+              </ProductPrice>
+            </PriceContainer>
+            <ProudctDescContainer>
+              <div>
+                선택된 상품종 안내와 농장 장점안내 아오리사과는 이러쿵 저러쿵한
+                사과로 보무르여르므가으르겨우르 맛이 좋스무니다.
+              </div>
+              <div>
+                저희 농장은 선물용 5kg 단위로 판매하고 있습니다. 해당 섹션은
+                상품 구성에 대한 내용과 주의할점, 오해하는점, 상품을 받는데
+                걸리는 시간
+              </div>
+              <div>
+                <span>택배배송 : 3,000원 / 제주, 도서지역 4,000원</span>
+                <span>10만원 이상 구매시 배송비 무료</span>
+              </div>
+            </ProudctDescContainer>
+          </>
+        ) : (
+          // Product 데이터가 로드되기 전에 표시할 초기 데이터
+          <div>Loading...</div>
+        )}
         <DetailSelectContainer>
           <form>
             <Line />
