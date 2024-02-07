@@ -177,7 +177,7 @@ export default function ProductOrderPage() {
   const [Product, setProduct] = useState<ProductProps>({
     id: 0,
     product_name: '',
-    price: 30000,
+    price: 0,
     weight: '',
     created_at: new Date(),
     updated_at: new Date(),
@@ -189,6 +189,7 @@ export default function ProductOrderPage() {
   const Detail = useCallback(async () => {
     const data = await getProductDetail(pathId);
     setProduct(data);
+    setQuantity(data.price)
   }, [pathId]);
 
   useEffect(() => {
@@ -202,7 +203,6 @@ export default function ProductOrderPage() {
     },
     [Product.price]
   );
-  console.log(Product.price);
 
   return (
     <Container>
