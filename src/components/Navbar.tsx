@@ -67,7 +67,7 @@ const NavBar: React.FC = () => {
                 </NavBarUl>
                 <NavBarUlWrap>
                     <NavBarUl>
-                        <NavBarLi to="/ProductOrder"><ShoppingBasketOutlinedIcon sx={{fontSize:"2.4rem"}}/></NavBarLi>
+                        <NavBarLi to="/Cart"><ShoppingBasketOutlinedIcon sx={{fontSize:"2.4rem"}}/></NavBarLi>
                     </NavBarUl>
                     <NavBarUl>
                         <NavBarLi to="/Login">로그인</NavBarLi>
