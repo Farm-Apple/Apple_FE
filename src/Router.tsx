@@ -8,7 +8,7 @@ import DetailBoardPage from './page/DetailBoard/index';
 import NaverTest from './page/NaverTest/index';
 import PageLayout from './components/PageLayout';
 import BoardPage from './page/Board';
-import CartPage from './page/Cart';
+import CartPage from './page/Cart/index.tsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -30,6 +30,7 @@ const router = createBrowserRouter([
   //   path: 'DetailBoard',
   //   element: <DetailBoardPage/>
   // },
+  { path: 'Cart', element: <CartPage /> },
   {
     path: 'Join',
     element: <JoinPage />,

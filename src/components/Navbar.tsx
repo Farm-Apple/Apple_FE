@@ -38,7 +38,8 @@ const NavBarUlWrap = styled.div`
 
 const NavBarUl = styled.ul`
   display: flex;
-  align-item: center;
+  align-items:center ;
+  /* align-item: ; */
   gap: 2rem;
 `
 const NavBarLi = styled(Link)`
