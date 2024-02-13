@@ -3,7 +3,6 @@ import HomePage from './page/Home/Home';
 import JoinPage from './page/Join';
 import LoginPage from './page/Login';
 import OrderCompletePage from './page/OrderComplete';
-import ProductPage from './page/Product/Product';
 import ProductOrderPage from './page/ProductOrder';
 import DetailBoardPage from './page/DetailBoard/index';
 import NaverTest from './page/NaverTest/index';
@@ -17,7 +16,6 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage scrollEventIn /> },
       { path: 'DetailBoard', element: <DetailBoardPage /> },
       { path: 'OrderComplete', element: <OrderCompletePage /> },
-      { path: 'Product', element: <ProductPage /> },
       { path: 'ProductOrder/:id', element: <ProductOrderPage /> },
       { path: 'Board', element: <BoardPage /> },
     ],

@@ -10,7 +10,7 @@ const NavBarContainer = styled.nav`
   left:0;
   width:100%;
   z-index: 100;
-  padding:0 10rem;
+  padding:1rem 10rem;
   background-color: white;
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@ const NavBarLi = styled(Link)`
   padding: 2rem;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight:bold;
   vertical-align: middle;
   color: black;
@@ -63,7 +63,6 @@ const NavBar: React.FC = () => {
                 <NavBarUl>
                     <NavBarLi to="/Board">농원소개</NavBarLi>
                     <NavBarLi to="/DetailBoard">농원소식</NavBarLi>
-                    <NavBarLi to="/Product">쇼핑몰</NavBarLi>
                     <NavBarLi to="/DetailBoard">커뮤니티</NavBarLi>
                 </NavBarUl>
                 <NavBarUlWrap>
