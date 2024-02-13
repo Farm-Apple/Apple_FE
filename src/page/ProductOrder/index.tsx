@@ -173,7 +173,7 @@ const BasketButton = styled.button`
   border-radius: 4px;
 `;
 
-export default function ProductOrderPage() {
+function ProductOrderPage() {
   const [Product, setProduct] = useState<ProductProps>({
     id: 0,
     product_name: '',
@@ -189,7 +189,7 @@ export default function ProductOrderPage() {
   const Detail = useCallback(async () => {
     const data = await getProductDetail(pathId);
     setProduct(data);
-    setQuantity(data.price)
+    setQuantity(data.price);
   }, [pathId]);
 
   useEffect(() => {
@@ -281,3 +281,4 @@ export default function ProductOrderPage() {
     </Container>
   );
 }
+export default ProductOrderPage
