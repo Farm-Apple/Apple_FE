@@ -38,7 +38,8 @@ const NavBarUlWrap = styled.div`
 
 const NavBarUl = styled.ul`
   display: flex;
-  align-item: center;
+  align-items:center ;
+  /* align-item: ; */
   gap: 2rem;
 `
 const NavBarLi = styled(Link)`
@@ -67,7 +68,7 @@ const NavBar: React.FC = () => {
                 </NavBarUl>
                 <NavBarUlWrap>
                     <NavBarUl>
-                        <NavBarLi to="/ProductOrder"><ShoppingBasketOutlinedIcon sx={{fontSize:"2.4rem"}}/></NavBarLi>
+                        <NavBarLi to="/Cart"><ShoppingBasketOutlinedIcon sx={{fontSize:"2.4rem"}}/></NavBarLi>
                     </NavBarUl>
                     <NavBarUl>
                         <NavBarLi to="/Login">로그인</NavBarLi>

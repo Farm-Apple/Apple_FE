@@ -8,6 +8,7 @@ import DetailBoardPage from './page/DetailBoard/index';
 import NaverTest from './page/NaverTest/index';
 import PageLayout from './components/PageLayout';
 import BoardPage from './page/Board';
+import CartPage from './page/Cart/index.tsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: 'OrderComplete', element: <OrderCompletePage /> },
       { path: 'ProductOrder/:id', element: <ProductOrderPage /> },
       { path: 'Board', element: <BoardPage /> },
+      { path: 'Cart', element: <CartPage /> },
     ],
   },
   // {
@@ -28,6 +30,7 @@ const router = createBrowserRouter([
   //   path: 'DetailBoard',
   //   element: <DetailBoardPage/>
   // },
+  { path: 'Cart', element: <CartPage /> },
   {
     path: 'Join',
     element: <JoinPage />,
