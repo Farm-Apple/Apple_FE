@@ -17,7 +17,6 @@
     "@types/node": "^20.8.10",
     "@types/swiper": "^6.0.0",
     "axios": "^1.5.1",
-    "pm2": "^5.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
