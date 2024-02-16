@@ -1,9 +1,10 @@
-import Introduce from './Introduce.tsx';
 
 export default function DetailBoardPage() {
   return (
     <>
-      <Introduce />
+      <div>
+          detail board page
+      </div>
     </>
   );
 }
