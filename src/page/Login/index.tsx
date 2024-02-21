@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import Logo from '../../assets/images/Title.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useInput from '../../hook/useInput';
 import { useCallback } from 'react';
 import { Login } from '../../api/auth/auth';
-// import NaverLoginBtn from '../../components/NaverLoginBtn';
+import NaverLoginBtn from '../../components/NaverLoginBtn';
 
 const LoginContainer = styled.section`
   height: 100vh;
@@ -63,6 +63,8 @@ const Button = styled.button`
 function LoginPage() {
   const [email, , onChangeEmail] = useInput('');
   const [password, , onChangePassword] = useInput('');
+  const navigate = useNavigate();
+
   console.log(email);
   console.log(password);
 
@@ -74,8 +76,9 @@ function LoginPage() {
         password: password,
       });
       console.log(loginData);
+      navigate('/')
     },
-    [email, password]
+    [email, password,navigate]
   );
 
   return (
@@ -116,8 +119,7 @@ function LoginPage() {
             </JoinWrapper>
             <Button type='submit'>로그인</Button>
           </LoginForm>
-          {/* <ButtonWrapper></ButtonWrapper> */}
-          {/* <NaverLoginBtn /> */}
+          <NaverLoginBtn />
         </section>
       </LoginContainer>
     </>
