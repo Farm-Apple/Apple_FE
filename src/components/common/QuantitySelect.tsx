@@ -9,7 +9,7 @@ type Props = {
 
 const QuantityContainer = styled.div`
   margin: 3rem 0;
-  margin-left: 170px; // 장바구니에 필요한 값
+  margin-left: 20px; // 장바구니에 필요한 값
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;

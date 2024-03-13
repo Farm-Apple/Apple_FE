@@ -24,7 +24,7 @@ const CartTitle = styled.h1`
 const ProductInfoTitleContainer = styled.div`
   & ul {
     display: grid;
-    grid-template-columns: 1fr 1.2fr 0.7fr 0.4fr;
+    grid-template-columns: 1fr 1.6fr 1fr 0.55fr;
     width: 100%;
     align-items: center;
     border-radius: 1rem;

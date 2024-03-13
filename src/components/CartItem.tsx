@@ -8,6 +8,7 @@ const CartItemList = styled.li`
   border: 1px solid #000;
   display: flex;
   justify-content: space-between;
+  /* justify-content: baseline; */
   align-items: center;
   padding: 20px 0;
 `;
@@ -17,7 +18,12 @@ const ProductInfoWrapper = styled.div`
   gap: 36px;
   margin-left: 90px;
 `;
-const ProductDetailInfo = styled.div``;
+const ProductDetailInfo = styled.div`
+  display: flex;
+  width: 418px;
+  flex-direction: column;
+  font-size: 12px;
+`;
 const ProductImage = styled.img`
   border: 1px solid #000;
   border-radius: 10%;
@@ -25,7 +31,14 @@ const ProductImage = styled.img`
   height: 160px;
 `;
 const ProductTotalPrice = styled.div`
-  margin-right: 100px;
+  width: 130px;
+  border: 1px solid #000;
+  margin-right: 55px;
+  margin-left: 148px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
 `;
 const Price = styled.div``;
 const Input = styled.input`
@@ -37,6 +50,9 @@ const DeleteButton = styled.button`
   position: absolute;
   top: 18px;
   right: 18px;
+`;
+const OrderButton = styled.button`
+  width: 100%;
 `;
 
 const CartItem: React.FC = () => {
@@ -57,7 +73,7 @@ const CartItem: React.FC = () => {
         <QuantitySelect onClick={() => {}} Counter={1} />
         <ProductTotalPrice>
           <Price>30,000</Price>
-          <button>주문하기</button>
+          <OrderButton>주문하기</OrderButton>
         </ProductTotalPrice>
         <DeleteButton>삭제</DeleteButton>
       </CartItemList>
