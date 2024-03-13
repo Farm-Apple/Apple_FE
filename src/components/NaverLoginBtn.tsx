@@ -11,7 +11,6 @@ const NaverLoginBtn = () => {
   const ClientID = import.meta.env.VITE_REACT_NAVER_CLIENT_ID;
   const RedirectUrl = import.meta.env.VITE_REACT_NAVER_REDIRECT_URL;
   console.log(naverState);
-
   
   return (
     <>

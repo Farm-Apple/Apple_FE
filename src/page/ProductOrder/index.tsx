@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import { getProductDetail } from '@src/api/auth/product';
-import appleimg from '@img/main_apple.jpg';
-import QuantitySelect from '@common/QuantitySelect.tsx';
+import { useState, useEffect, useCallback } from "react";
+import { useParams } from "react-router-dom";
+import { getProductDetail } from "@src/api/auth/product";
+import styled from "styled-components";
+import appleimg from "@img/main_apple.jpg";
+import QuantitySelect from "@common/QuantitySelect.tsx";
 
 interface ProductProps {
   id: number;
@@ -117,7 +117,7 @@ const FinalQuantity = styled.p`
   font-size: 1.8rem;
   line-height: 1.8;
   &::after {
-    content: '';
+    content: "";
     margin: auto 12px auto 11px;
     display: inline-block;
     height: 18px;
@@ -176,9 +176,9 @@ const BasketButton = styled.button`
 function ProductOrderPage() {
   const [Product, setProduct] = useState<ProductProps>({
     id: 0,
-    product_name: '',
+    product_name: "",
     price: 0,
-    weight: '',
+    weight: "",
     created_at: new Date(),
     updated_at: new Date(),
   });
@@ -210,14 +210,14 @@ function ProductOrderPage() {
       {Product.price !== 0 ? (
         <>
           <ProductImgSection>
-            <h3 className={'hidden'}>상품 이미지 섹션</h3>
+            <h3 className={"hidden"}>상품 이미지 섹션</h3>
             <ProductImg>
-              <img src={appleimg} alt='제품1 상세 사진' />
+              <img src={appleimg} alt="제품1 상세 사진" />
             </ProductImg>
           </ProductImgSection>
           {/* 상품 설명및 구매 섹션 */}
           <ProductDescSection>
-            <h3 className={'hidden'}>상품 설명및 구매 섹션</h3>
+            <h3 className={"hidden"}>상품 설명및 구매 섹션</h3>
             <ProductName>{Product.product_name}</ProductName>
             <PriceContainer>
               <ProductPrice>
@@ -266,8 +266,8 @@ function ProductOrderPage() {
                   </FinalProductContainer>
                   {/* 구매 및 장바구니 버튼 */}
                   <BttonWrapper>
-                    <OrderButton type='submit'>구매버튼</OrderButton>
-                    <BasketButton type='button'>장바구니 버튼</BasketButton>
+                    <OrderButton type="submit">구매버튼</OrderButton>
+                    <BasketButton type="button">장바구니 버튼</BasketButton>
                   </BttonWrapper>
                 </PurchaseContainer>
               </form>
@@ -281,4 +281,4 @@ function ProductOrderPage() {
     </Container>
   );
 }
-export default ProductOrderPage
+export default ProductOrderPage;
