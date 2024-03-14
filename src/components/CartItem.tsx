@@ -1,6 +1,8 @@
 import React from "react";
 import QuantitySelect from "@common/QuantitySelect";
 import styled from "styled-components";
+import ClearIcon from "@mui/icons-material/Clear";
+import { useCallback } from "react";
 
 const CartItemContainer = styled.ul``;
 const CartItemList = styled.li`
@@ -66,6 +68,8 @@ const DeleteButton = styled.button`
   position: absolute;
   top: 1.8rem;
   right: 1.8rem;
+  cursor: pointer;
+  background-color: transparent;
 `;
 const OrderButton = styled.button`
   width: 100%;
@@ -74,9 +78,17 @@ const OrderButton = styled.button`
   font-weight: 500;
   color: white;
   background-color: orange;
+  cursor: pointer;
 `;
 
 const CartItem: React.FC = () => {
+  // const handleClickCounter = useCallback(
+  //   (number: number) => {
+  //     setCounter((prev) => prev + number);
+  //     setQuantity((prev) => prev + Product.price * number);
+  //   },
+  //   [Product.price]
+  // );
   return (
     <CartItemContainer>
       <CartItemList>
@@ -96,7 +108,9 @@ const CartItem: React.FC = () => {
           <Price>30,000</Price>
           <OrderButton>주문하기</OrderButton>
         </ProductTotalPrice>
-        <DeleteButton>삭제</DeleteButton>
+        <DeleteButton>
+          <ClearIcon />
+        </DeleteButton>
       </CartItemList>
     </CartItemContainer>
   );
