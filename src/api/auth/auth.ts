@@ -23,7 +23,6 @@ export const signUp = async (formData: SignUpData) => {
 };
 export const Login = async (loginData: LoginData) => {
   const response = await instance.post('/login', loginData);
-
   return response;
 };
 
