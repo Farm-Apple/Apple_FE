@@ -5,7 +5,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   padding: 3rem 3rem;
-  margin-top: 130px;
+  margin-top: 13rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ const CartSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 5rem;
-  width: 1280px;
+  width: 128rem;
 `;
 const CartTitle = styled.h1`
   font-size: 3.6rem;
@@ -53,6 +53,8 @@ const CartPage = () => {
             <li>상품금액</li>
           </ul>
         </ProductInfoTitleContainer>
+        <CartItem />
+        <CartItem />
         <CartItem />
         <div>Total Product Quantity</div>
         <button>주문하기</button>

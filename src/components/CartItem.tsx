@@ -8,51 +8,72 @@ const CartItemList = styled.li`
   border: 1px solid #000;
   display: flex;
   justify-content: space-between;
-  /* justify-content: baseline; */
   align-items: center;
-  padding: 20px 0;
+  padding: 2rem 0;
 `;
 const ProductInfoContainer = styled.div``;
 const ProductInfoWrapper = styled.div`
   display: flex;
-  gap: 36px;
-  margin-left: 90px;
+  gap: 3.6rem;
+  margin-left: 9rem;
 `;
 const ProductDetailInfo = styled.div`
   display: flex;
-  width: 418px;
+  width: 41.8rem;
   flex-direction: column;
-  font-size: 12px;
+  gap: 1rem;
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  :nth-child(1) {
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+  :nth-child(2) {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+  :nth-child(3) {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-top: 7rem;
+  }
 `;
 const ProductImage = styled.img`
   border: 1px solid #000;
   border-radius: 10%;
-  width: 160px;
-  height: 160px;
+  width: 16rem;
+  height: 16rem;
 `;
 const ProductTotalPrice = styled.div`
-  width: 130px;
-  border: 1px solid #000;
-  margin-right: 55px;
-  margin-left: 148px;
+  width: 13rem;
+  margin-right: 5.5rem;
+  margin-left: 14.8rem;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
+  gap: 2.6rem;
 `;
-const Price = styled.div``;
+const Price = styled.div`
+  font-size: 1.8rem;
+  font-weight: 700;
+`;
 const Input = styled.input`
   position: absolute;
   top: 50%;
-  left: 28px;
+  left: 2.8rem;
 `;
 const DeleteButton = styled.button`
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 1.8rem;
+  right: 1.8rem;
 `;
 const OrderButton = styled.button`
   width: 100%;
+  height: 4rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: white;
+  background-color: orange;
 `;
 
 const CartItem: React.FC = () => {
