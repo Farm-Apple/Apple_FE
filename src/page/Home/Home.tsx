@@ -1,22 +1,16 @@
-import React, {ReactNode} from 'react';
-import PageLayout from '../../components/PageLayout.tsx';
+import React from 'react';
 import Introduction from "./Introduction.tsx";
 import ProductType from "./ProductType.tsx";
 import Footer from "../../components/Footer.tsx";
+import {ParentProps} from "../../components/PageLayout.tsx";
 
-export interface ParentProps{
-    children: ReactNode,
-}
-
-const HomePage: React.FC = () => {
+const HomePage: React.FC<ParentProps> = () => {
 
     return (
     <>
-        <PageLayout>
-            <Introduction/>
-            <ProductType/>
-            <Footer/>
-        </PageLayout>
+        <Introduction/>
+        <ProductType/>
+        <Footer/>
     </>
   );
 };

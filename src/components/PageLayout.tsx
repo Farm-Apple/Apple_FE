@@ -1,21 +1,17 @@
 import NavBar from "./Navbar.tsx";
-import styled from "styled-components";
-import React from "react";
-import {ParentProps} from "../page/Home/Home.tsx";
+import React, {ReactNode} from "react";
+import {Outlet} from "react-router-dom";
 
-
-const StyledLayout = styled.div`
-    
-`
-const PageLayout: React.FC<ParentProps> = ({children}) => {
+export interface ParentProps{
+    children?: ReactNode,
+    scrollEventIn: boolean;
+}
+const PageLayout: React.FC<ParentProps> = () => {
 
     return(
         <>
             <NavBar/>
-            {children}
-            <StyledLayout>
-
-            </StyledLayout>
+            <Outlet/>
         </>
     )
 }
