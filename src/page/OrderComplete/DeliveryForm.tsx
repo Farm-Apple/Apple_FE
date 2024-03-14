@@ -20,7 +20,6 @@ export default function DeliveryForm() {
             <DeliveryFormContainer>
                 <DeliveryFormTitle>배송정보</DeliveryFormTitle>
                 <DeliveryFormSubTitle>주문자 정보</DeliveryFormSubTitle>
-
             </DeliveryFormContainer>
         </>
     )
