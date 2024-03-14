@@ -66,11 +66,15 @@ interface AppleListType {
   weight: string;
   created_at: string;
   updated_at: string;
+  is_opened: number;
 }
 const ProductType: React.FC = () => {
   const [AppleList, setAppleList] = useState<AppleListType[]>([]);
   useEffect(() => {
-    GetProductList().then((response) => setAppleList(response));
+    GetProductList().then((response: AppleListType[]) => {
+      const openList = response.filter(item => item.is_opened === 1);
+      setAppleList(openList);
+    });
   }, []);
 
   return (
