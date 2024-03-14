@@ -4,7 +4,9 @@ import styled from "styled-components";
 import ClearIcon from "@mui/icons-material/Clear";
 // import { useCallback } from "react";
 
-const CartItemContainer = styled.ul``;
+const CartItemContainer = styled.ul`
+  width: 100%;
+`;
 const CartItemList = styled.li`
   position: relative;
   border: 1px solid #000;

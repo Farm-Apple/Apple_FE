@@ -14,6 +14,7 @@ const Container = styled.div`
 const CartSection = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 5rem;
   width: 128rem;
 `;
@@ -23,6 +24,7 @@ const CartTitle = styled.h1`
   text-align: center;
 `;
 const ProductInfoTitleContainer = styled.div`
+  width: 100%;
   & ul {
     display: grid;
     grid-template-columns: 1fr 1.6fr 1fr 0.55fr;
@@ -35,6 +37,16 @@ const ProductInfoTitleContainer = styled.div`
       font-size: 1.8rem;
     }
   }
+`;
+const OrderButton = styled.button`
+  width: 220px;
+  padding: 19px 65px;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: white;
+  background-color: orange;
+  cursor: pointer;
+  margin-bottom: 3rem;
 `;
 
 const CartPage = () => {
@@ -58,7 +70,7 @@ const CartPage = () => {
         <CartItem />
         <CartItem />
         <TotalPrice />
-        <button>주문하기</button>
+        <OrderButton>주문하기</OrderButton>
       </CartSection>
     </Container>
   );

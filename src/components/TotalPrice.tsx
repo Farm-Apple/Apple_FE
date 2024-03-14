@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const TotalPriceContainer = styled.div`
+width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
