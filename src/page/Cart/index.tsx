@@ -1,3 +1,4 @@
+import TotalPrice from "@components/TotalPrice";
 import CartItem from "@components/CartItem";
 import styled from "styled-components";
 
@@ -56,7 +57,7 @@ const CartPage = () => {
         <CartItem />
         <CartItem />
         <CartItem />
-        <div>Total Product Quantity</div>
+        <TotalPrice />
         <button>주문하기</button>
       </CartSection>
     </Container>

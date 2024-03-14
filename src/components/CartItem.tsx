@@ -2,7 +2,7 @@ import React from "react";
 import QuantitySelect from "@common/QuantitySelect";
 import styled from "styled-components";
 import ClearIcon from "@mui/icons-material/Clear";
-import { useCallback } from "react";
+// import { useCallback } from "react";
 
 const CartItemContainer = styled.ul``;
 const CartItemList = styled.li`
