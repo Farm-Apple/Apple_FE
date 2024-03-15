@@ -43,7 +43,7 @@ const ResultPayInfoTitle = styled(PaymentMethodTitle)`
     border-bottom: none;
 `
 const ResultPayInfoBox = styled.div`
-    border:2px solid green;
+    border:2px solid #21BF48;
     border-radius: 2rem;
     overflow:hidden;
 `
