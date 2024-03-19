@@ -15,9 +15,6 @@ interface NaverParams extends AxiosRequestConfig<any> {
   code: string | any;
   state: string | any;
 }
-interface OrderList {
-  user_id: number;
-}
 
 export const signUp = async (formData: SignUpData) => {
   const response = await instance.post('/users', formData);
@@ -39,12 +36,6 @@ export const NaverLogin = async (Param: NaverParams) => {
 
 export const GetProductList = async() => {
   const response = await instance.get('/products');
-
-  return response.data;
-}
-
-export const GetOrderCompleteList = async(userId:OrderList) => {
-  const response = await instance.post('/carts', userId);
 
   return response.data;
 }
