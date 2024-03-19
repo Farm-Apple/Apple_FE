@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-import Logo from '../../assets/images/Title.svg';
-import { Link } from 'react-router-dom';
-import useInput from '../../hook/useInput';
-import { useCallback } from 'react';
-import { Login } from '../../api/auth/auth';
-// import NaverLoginBtn from '../../components/NaverLoginBtn';
+import styled from "styled-components";
+import Logo from "../../assets/images/Title.svg";
+import { Link, useNavigate } from "react-router-dom";
+import useInput from "../../hook/useInput";
+import { useCallback } from "react";
+import {GetOrderCompleteList, Login} from "../../api/auth/auth";
+// import NaverLoginBtn from "../../components/NaverLoginBtn";
 
 const LoginContainer = styled.section`
   height: 100vh;
@@ -58,13 +58,13 @@ const Button = styled.button`
   width: 100%;
   padding: 1.6rem 0 1.6rem 0;
   font-size: 2rem;
+  cursor: pointer;
 `;
 
 function LoginPage() {
-  const [email, , onChangeEmail] = useInput('');
-  const [password, , onChangePassword] = useInput('');
-  console.log(email);
-  console.log(password);
+  const [email, , onChangeEmail] = useInput("");
+  const [password, , onChangePassword] = useInput("");
+  const navigate = useNavigate();
 
   const onSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
@@ -73,50 +73,54 @@ function LoginPage() {
         email: email,
         password: password,
       });
-      console.log(loginData);
+      console.log(loginData.data.accessToken);
+      localStorage.setItem("token", loginData.data.accessToken);
+      navigate("/");
+
+      const orderListData = await GetOrderCompleteList(loginData.data.user.id);
+      console.log(orderListData);
     },
-    [email, password]
+    [email, password, navigate]
   );
 
   return (
     <>
       <LoginContainer>
         <header>
-          <img src={Logo} alt='로고이미지' />
+          <img src={Logo} alt="로고이미지" />
         </header>
         <section>
-          <h2 className='hidden'>로그인 섹션</h2>
+          <h2 className="hidden">로그인 섹션</h2>
           <LoginForm onSubmit={onSubmit}>
             <IdPwWrapper>
               <IdWrapper>
-                <Label htmlFor='email'></Label>
+                <Label htmlFor="email"></Label>
                 <Input
-                  type='email'
-                  id='id'
+                  type="email"
+                  id="id"
                   value={email}
                   onChange={onChangeEmail}
-                  placeholder='아이디를 입력하세요'
+                  placeholder="아이디를 입력하세요"
                   required
                 />
               </IdWrapper>
               <IdWrapper>
-                <Label htmlFor='password'></Label>
+                <Label htmlFor="password"></Label>
                 <Input
-                  type='password'
-                  id='password'
+                  type="password"
+                  id="password"
                   value={password}
                   onChange={onChangePassword}
-                  placeholder='비밀번호를 입력하세요'
+                  placeholder="비밀번호를 입력하세요"
                   required
                 />
               </IdWrapper>
             </IdPwWrapper>
             <JoinWrapper>
-              애플팜 회원이 아니시라면? <Link to='/join'>간편 회원가입</Link>
+              애플팜 회원이 아니시라면? <Link to="/join">간편 회원가입</Link>
             </JoinWrapper>
-            <Button type='submit'>로그인</Button>
+            <Button type="submit">로그인</Button>
           </LoginForm>
-          {/* <ButtonWrapper></ButtonWrapper> */}
           {/* <NaverLoginBtn /> */}
         </section>
       </LoginContainer>
