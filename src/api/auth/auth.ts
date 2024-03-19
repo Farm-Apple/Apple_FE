@@ -1,5 +1,5 @@
-import { instance } from '../auth/axiosInstance';
-import { AxiosRequestConfig } from 'axios';
+import {instance, postInstance} from '../auth/axiosInstance';
+import {AxiosRequestConfig} from 'axios';
 interface SignUpData {
   email: string;
   password: string;
@@ -14,6 +14,9 @@ interface LoginData {
 interface NaverParams extends AxiosRequestConfig<any> {
   code: string | any;
   state: string | any;
+}
+interface CartsParams extends AxiosRequestConfig<any>{
+  user_id: number;
 }
 
 export const signUp = async (formData: SignUpData) => {
@@ -35,5 +38,11 @@ export const NaverLogin = async (Param: NaverParams) => {
 export const GetProductList = async() => {
   const response = await instance.get('/products');
 
+  return response.data;
+}
+
+export const GetOrderCompleteList = async(id:CartsParams) => {
+  const response = await postInstance.get('/carts',{data: id.user_id});
+  console.log(response);
   return response.data;
 }
