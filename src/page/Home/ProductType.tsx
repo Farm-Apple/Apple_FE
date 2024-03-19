@@ -7,7 +7,7 @@ import { GetProductList } from '../../api/auth/auth.ts';
 
 const ProductTypeContainer = styled.section`
   width: 100%;
-  padding: 10rem;
+  padding: 10rem 25rem;
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;

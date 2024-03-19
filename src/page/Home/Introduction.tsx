@@ -16,8 +16,9 @@ const IntroductionCardTitle = styled.h2`
 
 const IntroductionCard = styled.div`
     width: 100%;
-    height: 50vh;
+    height: 40vh;
     background: url(${mainApple}) no-repeat center center;
+    background-size: cover;
     display: flex !important;
     justify-content: center;
     align-items: center;

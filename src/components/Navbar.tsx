@@ -10,7 +10,7 @@ const NavBarContainer = styled.nav`
   left:0;
   width:100%;
   z-index: 100;
-  padding:1rem 10rem;
+  padding:1rem 25rem;
   background-color: white;
   display: flex;
   align-items: center;
