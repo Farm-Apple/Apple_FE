@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import styled from "styled-components";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 
 type Props = {
   onClick: (number: number) => void;
@@ -48,17 +48,17 @@ const QuantitySelect: React.FC<Props> = ({ Counter, onClick }) => {
   return (
     <QuantityContainer>
       <MinusButton
-        type='button'
+        type="button"
         disabled={Counter === 1}
         onClick={() => onClick(-1)}
       >
         <RemoveIcon />
       </MinusButton>
       <label>
-        <input type='number' value={Counter} min={1} readOnly />
+        <input type="number" value={Counter} min={1} readOnly />
       </label>
       <PlusButton
-        type='button'
+        type="button"
         disabled={Counter > 9}
         onClick={() => onClick(+1)}
       >
