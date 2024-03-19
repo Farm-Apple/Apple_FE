@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { getProductDetail } from "@src/api/auth/product";
+import { PostCart } from "@src/api/cart/PostCart";
 import styled from "styled-components";
 import appleimg from "@img/main_apple.jpg";
 import QuantitySelect from "@common/QuantitySelect.tsx";
@@ -163,7 +164,7 @@ const OrderButton = styled.button`
   color: rgba(255, 255, 255, 1);
   border-radius: 4px;
 `;
-const BasketButton = styled.button`
+const CartAddButton = styled.button`
   font-size: 1.8rem;
   font-weight: 700;
   background-color: orange;
@@ -189,8 +190,18 @@ function ProductOrderPage() {
   const Detail = useCallback(async () => {
     const data = await getProductDetail(pathId);
     setProduct(data);
+    console.log(data);
     setQuantity(data.price);
   }, [pathId]);
+
+  const AddCart = async () => {
+    const data = await PostCart({
+      product_id: Product.id,
+      quantity: Counter,
+      price: Product.price,
+    });
+    console.log(data);
+  };
 
   useEffect(() => {
     Detail();
@@ -267,7 +278,9 @@ function ProductOrderPage() {
                   {/* 구매 및 장바구니 버튼 */}
                   <BttonWrapper>
                     <OrderButton type="submit">구매버튼</OrderButton>
-                    <BasketButton type="button">장바구니 버튼</BasketButton>
+                    <CartAddButton onClick={AddCart} type="button">
+                      장바구니 버튼
+                    </CartAddButton>
                   </BttonWrapper>
                 </PurchaseContainer>
               </form>

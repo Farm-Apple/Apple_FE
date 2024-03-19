@@ -12,6 +12,6 @@ export const postInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    "Authorization": localStorage.getItem("token"),
-  }
-})
+    Authorization: localStorage.getItem("token"),
+  },
+});

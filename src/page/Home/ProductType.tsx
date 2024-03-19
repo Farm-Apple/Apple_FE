@@ -11,6 +11,7 @@ const ProductTypeContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
+  padding: 0 25rem;
 `;
 const ProductCard = styled(Link)`
   display: flex;

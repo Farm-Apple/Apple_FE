@@ -39,14 +39,14 @@ const ProductInfoTitleContainer = styled.div`
   }
 `;
 const OrderButton = styled.button`
-  width: 220px;
-  padding: 19px 65px;
+  width: 22rem;
+  padding: 1.9rem 6.5rem;
   font-size: 2.4rem;
   font-weight: 700;
   color: white;
   background-color: orange;
-  cursor: pointer;
   margin-bottom: 3rem;
+  cursor: pointer;
 `;
 
 const CartPage = () => {
