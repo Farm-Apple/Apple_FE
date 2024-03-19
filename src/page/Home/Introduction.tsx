@@ -1,116 +1,74 @@
-import styled, { keyframes } from 'styled-components';
+import React from "react";
+import styled from 'styled-components';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import mainApple from '../../assets/images/main_apple.png';
-import { Swiper, SwiperSlide } from 'swiper/react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { Autoplay, Virtual, Navigation } from 'swiper';
-import 'swiper/swiper-bundle.css';
-
-const slideIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(50px); /* 초기 위치 설정 */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0); /* 최종 위치 설정 */
-  }
-`;
-
-const CustomSwiper = styled(Swiper)`
-  width: 100%;
-  margin-top: 8.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .swiper-button-prev {
-    &:after {
-      color: white;
-      font-size: 4rem;
-      border: 1px solid white;
-      padding: 20px 30px;
-      margin-left: 20px;
-    }
-  }
-  .swiper-button-next {
-    &:after {
-      color: white;
-      font-size: 4rem;
-      border: 1px solid white;
-      padding: 20px 30px;
-      margin-right: 20px;
-    }
-  }
-`;
-const CustomSwiperSlide = styled(SwiperSlide)``;
 
 const IntroductionContainer = styled.section`
-  height: 60vh;
-  background: url(${mainApple}) no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    padding-top:10rem;
+`
+
+const IntroductionCardTitle = styled.h2`
+    color:white;
+    font-size:10rem;
 `;
 
-const IntroductionTitle = styled.h2`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  font-size: 6.4rem;
-  font-weight: 800;
-  color: white;
-  text-align: center;
-  animation: ${slideIn} 2s ease forwards;
+const IntroductionCard = styled.div`
+    width: 100%;
+    height: 50vh;
+    background: url(${mainApple}) no-repeat center center;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
 `;
 
-const IntroductionButton = styled.button`
-  padding: 2rem 10rem;
-  margin-top: 2rem;
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
-  border-radius: 4rem;
-  font-size: 2.4rem;
-  cursor: pointer;
-  animation: ${slideIn} 2s ease forwards;
-  transition: 0.2s;
-  &:hover {
-    border: 2px solid red;
-    background-color: red;
-    color: white;
-  }
+const PrevButton = styled.button`
+    position: absolute;
+    left: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 5rem;
+    height: 5rem;
+    z-index: 1;
 `;
 
+const NextButton = styled.button`
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 5rem;
+    height: 5rem;
+    z-index: 1;
+`;
 const Introduction: React.FC = () => {
-  return (
-    <>
-      <CustomSwiper
-        modules={[Autoplay, Virtual, Navigation]}
-        autoplay={{
-          delay: 5000,
-        }}
-        virtual
-        navigation
-      >
-        {['첫번째', '두번째', '세번째'].map(
-          (value: string | number, index: number) => {
-            return (
-              <CustomSwiperSlide key={index}>
-                <IntroductionContainer>
-                  <IntroductionTitle>
-                    {value} 사과가 맛있는<span>가족농원</span>
-                  </IntroductionTitle>
-                  <IntroductionButton>구매하러 가기</IntroductionButton>
-                </IntroductionContainer>
-              </CustomSwiperSlide>
-            );
-          }
-        )}
-      </CustomSwiper>
-    </>
-  );
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        prevArrow: <PrevButton />, // 이전 버튼 커스터마이징
+        nextArrow: <NextButton />  // 다음 버튼 커스터마이징
+    };
+
+    const renderSlides = () =>
+        ["하나","둘","셋"].map((num) => (
+            <IntroductionCard>
+                <IntroductionCardTitle>{num}</IntroductionCardTitle>
+            </IntroductionCard>
+        ));
+
+    return (
+        <IntroductionContainer>
+            <Slider {...settings}>
+                {renderSlides()}
+            </Slider>
+        </IntroductionContainer>
+    );
 };
 
 export default Introduction;
