@@ -1,6 +1,8 @@
 import TotalPrice from "@components/TotalPrice";
 import CartItem from "@components/CartItem";
 import styled from "styled-components";
+import { GetOrderCompleteList } from "@src/api/auth/auth";
+import { useCallback, useEffect, useState } from "react";
 
 const Container = styled.div`
   height: 100vh;
@@ -48,8 +50,45 @@ const OrderButton = styled.button`
   margin-bottom: 3rem;
   cursor: pointer;
 `;
+interface Product {
+  product_name: string;
+  created_at: string;
+  detail: null;
+  id: number;
+  user_id: number;
+  product: ProductDetail;
+  price: number;
+  product_image: null;
+  updated_at: string;
+  weight: string;
+  is_opened: number | undefined;
+}
+interface ProductDetail {
+  product_name: string;
+  created_at: string;
+  detail: null;
+  id: number;
+  user_id: number;
+  product: ProductDetail;
+  price: number;
+  product_image: null;
+  updated_at: string;
+  weight: string;
+  is_opened: number | undefined;
+}
 
-const CartPage = () => {
+const CartPage: React.FC = () => {
+  const [CartList, setCartList] = useState<Product[]>([]);
+
+  const CartItemList = useCallback(async () => {
+    const data = await GetOrderCompleteList();
+    setCartList(data);
+  }, []);
+
+  useEffect(() => {
+    CartItemList();
+  }, [CartItemList]);
+
   return (
     <Container>
       <CartSection>
@@ -66,11 +105,17 @@ const CartPage = () => {
             <li>상품금액</li>
           </ul>
         </ProductInfoTitleContainer>
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <TotalPrice />
-        <OrderButton>주문하기</OrderButton>
+        {CartList.length === 0 ? (
+          <p>장바구니에 담긴 상품이 없습니다.</p>
+        ) : (
+          <>
+            {CartList.map((product) => (
+              <CartItem key={product.id} product={product} />
+            ))}
+            <TotalPrice />
+            <OrderButton>주문하기</OrderButton>
+          </>
+        )}
       </CartSection>
     </Container>
   );

@@ -73,6 +73,7 @@ const ProductType: React.FC = () => {
   useEffect(() => {
     GetProductList().then((response) => setAppleList(response));
   }, []);
+  console.log(AppleList)
 
   return (
     <ProductTypeContainer>

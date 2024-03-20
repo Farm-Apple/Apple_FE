@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import QuantitySelect from "@common/QuantitySelect";
 import styled from "styled-components";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -82,15 +82,37 @@ const OrderButton = styled.button`
   background-color: orange;
   cursor: pointer;
 `;
+interface CartItemProps {
+  product: ProductDetail;
+}
+interface ProductDetail {
+  product_name: string;
+  created_at: string;
+  detail: null;
+  id: number;
+  user_id: number;
+  product: ProductDetail;
+  price: number;
+  product_image: null;
+  updated_at: string;
+  weight: string;
+  is_opened: number | undefined;
+}
 
-const CartItem: React.FC = () => {
-  // const handleClickCounter = useCallback(
-  //   (number: number) => {
-  //     setCounter((prev) => prev + number);
-  //     setQuantity((prev) => prev + Product.price * number);
-  //   },
-  //   [Product.price]
-  // );
+const CartItem: React.FC<CartItemProps> = ({ product }) => {
+  const [Counter, setCounter] = useState<number>(1);
+  const [Quantity, setQuantity] = useState<number>(product.product.price);
+
+  const handleClickCounter = useCallback(
+    (number: number) => {
+      setCounter((prev) => prev + number);
+      setQuantity((prev) => prev + product.product.price * number);
+    },
+    [product.product.price]
+  );
+
+  console.log(product.product);
+
   return (
     <CartItemContainer>
       <CartItemList>
@@ -99,15 +121,15 @@ const CartItem: React.FC = () => {
           <ProductInfoWrapper>
             <ProductImage />
             <ProductDetailInfo>
-              <div>Product Title</div>
-              <div>Product Price</div>
+              <div>{product.product.product_name}</div>
+              <div>{product.product.price.toLocaleString()}</div>
               <div>택배배송 / 무료배송</div>
             </ProductDetailInfo>
           </ProductInfoWrapper>
         </ProductInfoContainer>
-        <QuantitySelect onClick={() => {}} Counter={1} />
+        <QuantitySelect onClick={handleClickCounter} Counter={Counter} />
         <ProductTotalPrice>
-          <Price>30,000</Price>
+          <Price>{Quantity.toLocaleString()}</Price>
           <OrderButton>주문하기</OrderButton>
         </ProductTotalPrice>
         <DeleteButton>
