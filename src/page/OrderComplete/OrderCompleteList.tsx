@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import {useEffect, useState} from "react";
+import {GetOrderCompleteList} from "../../api/auth/auth.ts";
 
 const OrderCompleteContainer = styled.section`
   padding:3rem 20rem;
@@ -118,8 +120,45 @@ const OrderTotalPrice = styled.p`
     font-weight:bold;
     color:#EB5757;
 `
-
+interface OrderList{
+    created_at: string;
+    id:number;
+    price:number;
+    product: {
+        detail: string,
+        created_at: string,
+        id: number,
+        is_opened:number,
+        price:number,
+        product_name:string,
+        updated_at:string,
+        weight:string,
+    };
+    product_id:number;
+    product_image:null;
+    quantity:number;
+    updated_at:string;
+    user_id:number;
+}
 export default function OrderCompleteList() {
+    // user 로그인 시 넘어올 데이터가 전역상태관리가 되던지, 여기서 한번 더 호출하던지 해야됨
+    const [orderList, setOrderList] = useState<OrderList[]>([]);
+    const [totalPrice, setTotalPrice] = useState<number>();
+
+    useEffect(() => {
+        GetOrderCompleteList()
+            .then((response) => {
+                setOrderList(response);
+                let totalPriceResult = 0;
+                response.forEach((item:OrderList) => {
+                    totalPriceResult += item.price * item.quantity
+                })
+
+                setTotalPrice(totalPriceResult);
+            })
+    },[])
+
+    console.log("이거",orderList);
     return (
         <OrderCompleteContainer>
             <OrderCompleteTitle>주문 / 결제하기</OrderCompleteTitle>
@@ -129,22 +168,32 @@ export default function OrderCompleteList() {
                 <OrderListIndicatorLi>배송비</OrderListIndicatorLi>
                 <OrderListIndicatorLi>주문금액</OrderListIndicatorLi>
             </OrderListIndicatorUl>
-            <OrderListCardContainer>
-                <OrderListProductInfo>
-                    <OrderListCardImage></OrderListCardImage>
-                    <OrderListCardDescUl>
-                        <OrderListCardDescLi>개쩌는 사과</OrderListCardDescLi>
-                        <OrderListCardDescLi>부사사과10kg</OrderListCardDescLi>
-                        <OrderListCardDescLi>수량: 1개</OrderListCardDescLi>
-                    </OrderListCardDescUl>
-                </OrderListProductInfo>
-                <OrderListDiscount>-</OrderListDiscount>
-                <OrderListDeliveryFee>무료배송</OrderListDeliveryFee>
-                <OrderListOrderFee>17,500원</OrderListOrderFee>
-            </OrderListCardContainer>
+
+            {
+                // orderList 받아와서 OrderListCardContainer 복붙
+                orderList.map((item) => {
+                    return(
+                        <>
+                            <OrderListCardContainer>
+                                <OrderListProductInfo>
+                                    <OrderListCardImage></OrderListCardImage>
+                                    <OrderListCardDescUl>
+                                        <OrderListCardDescLi>{item.product.detail}</OrderListCardDescLi>
+                                        <OrderListCardDescLi>{item.product.product_name}</OrderListCardDescLi>
+                                        <OrderListCardDescLi>수량: {item.quantity}개</OrderListCardDescLi>
+                                    </OrderListCardDescUl>
+                                </OrderListProductInfo>
+                                <OrderListDiscount>-</OrderListDiscount>
+                                <OrderListDeliveryFee>무료배송</OrderListDeliveryFee>
+                                <OrderListOrderFee>{(item.price * item.quantity).toLocaleString()}원</OrderListOrderFee>
+                            </OrderListCardContainer>
+                        </>
+                    )
+                })
+            }
             <OrderTotalPriceContainer>
                 <OrderTotalPriceTitle>총 주문금액</OrderTotalPriceTitle>
-                <OrderTotalPrice>46,500원</OrderTotalPrice>
+                <OrderTotalPrice>{totalPrice?.toLocaleString()}원</OrderTotalPrice>
             </OrderTotalPriceContainer>
         </OrderCompleteContainer>
     )

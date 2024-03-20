@@ -15,9 +15,9 @@ interface NaverParams extends AxiosRequestConfig<any> {
   code: string | any;
   state: string | any;
 }
-interface CartsParams extends AxiosRequestConfig<any>{
-  user_id: number;
-}
+// interface CartsParams extends AxiosRequestConfig<any>{
+//   user_id: number;
+// }
 
 export const signUp = async (formData: SignUpData) => {
   const response = await instance.post('/users', formData);
@@ -41,8 +41,8 @@ export const GetProductList = async() => {
   return response.data;
 }
 
-export const GetOrderCompleteList = async(id:CartsParams) => {
-  const response = await postInstance.get('/carts',{data: id.user_id});
-  console.log(response);
+export const GetOrderCompleteList = async() => {
+  const response = await postInstance.get('/carts');
+
   return response.data;
 }

@@ -3,7 +3,7 @@ import Logo from "../../assets/images/Title.svg";
 import { Link, useNavigate } from "react-router-dom";
 import useInput from "../../hook/useInput";
 import { useCallback } from "react";
-import {GetOrderCompleteList, Login} from "../../api/auth/auth";
+import {Login} from "../../api/auth/auth";
 // import NaverLoginBtn from "../../components/NaverLoginBtn";
 
 const LoginContainer = styled.section`
@@ -77,8 +77,6 @@ function LoginPage() {
       localStorage.setItem("token", loginData.data.accessToken);
       navigate("/");
 
-      const orderListData = await GetOrderCompleteList(loginData.data.user.id);
-      console.log(orderListData);
     },
     [email, password, navigate]
   );
