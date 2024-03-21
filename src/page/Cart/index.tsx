@@ -62,6 +62,7 @@ interface Product {
   updated_at: string;
   weight: string;
   is_opened: number | undefined;
+  quantity: number;
 }
 interface ProductDetail {
   product_name: string;
@@ -109,8 +110,8 @@ const CartPage: React.FC = () => {
           <p>장바구니에 담긴 상품이 없습니다.</p>
         ) : (
           <>
-            {CartList.map((product) => (
-              <CartItem key={product.id} product={product} />
+            {CartList.map((item) => (
+              <CartItem key={item.id} item={item} />
             ))}
             <TotalPrice />
             <OrderButton>주문하기</OrderButton>

@@ -83,36 +83,44 @@ const OrderButton = styled.button`
   cursor: pointer;
 `;
 interface CartItemProps {
-  product: ProductDetail;
+  item: ItemProps;
 }
+interface ItemProps {
+  product: ProductDetail;
+  quantity?: number;
+  key?: number;
+  id?: number;
+  product_id?: number;
+  product_image?: null;
+  updated_at?: string;
+  user_id?: number;
+  price?: number;
+  created_at?: string;
+}
+
 interface ProductDetail {
-  product_name: string;
   created_at: string;
   detail: null;
   id: number;
-  user_id: number;
-  product: ProductDetail;
+  is_opened?: number;
   price: number;
-  product_image: null;
+  product_name: string;
   updated_at: string;
   weight: string;
-  is_opened: number | undefined;
+  quantity?: number;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ product }) => {
-  const [Counter, setCounter] = useState<number>(1);
-  const [Quantity, setQuantity] = useState<number>(product.product.price);
+const CartItem: React.FC<CartItemProps> = ({ item }) => {
+  const [Counter, setCounter] = useState<number>(item.quantity as number);
+  const [Quantity, setQuantity] = useState<number>(item.price as number);
 
   const handleClickCounter = useCallback(
     (number: number) => {
       setCounter((prev) => prev + number);
-      setQuantity((prev) => prev + product.product.price * number);
+      setQuantity((prev) => prev + item.product.price * number);
     },
-    [product.product.price]
+    [item.product.price]
   );
-
-  console.log(product.product);
-
   return (
     <CartItemContainer>
       <CartItemList>
@@ -121,8 +129,8 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
           <ProductInfoWrapper>
             <ProductImage />
             <ProductDetailInfo>
-              <div>{product.product.product_name}</div>
-              <div>{product.product.price.toLocaleString()}</div>
+              <div>{item.product.product_name}</div>
+              <div>{item.product.price.toLocaleString()}</div>
               <div>택배배송 / 무료배송</div>
             </ProductDetailInfo>
           </ProductInfoWrapper>

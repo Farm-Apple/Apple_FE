@@ -190,7 +190,6 @@ function ProductOrderPage() {
   const Detail = useCallback(async () => {
     const data = await getProductDetail(pathId);
     setProduct(data);
-    console.log(data);
     setQuantity(data.price);
   }, [pathId]);
 
@@ -214,6 +213,7 @@ function ProductOrderPage() {
     },
     [Product.price]
   );
+  console.log(Counter);
 
   return (
     <Container>

@@ -39,15 +39,9 @@ export const NaverLogin = async (Param: NaverParams) => {
 
 export const GetProductList = async () => {
   const response = await instance.get("/products");
-
   return response.data;
 };
 
-// export const GetOrderCompleteList = async(id:CartsParams) => {
-//   const response = await postInstance.get('/carts',{data: id.user_id});
-//   console.log(response);
-//   return response.data;
-// }
 export const GetOrderCompleteList = async () => {
   const response = await postInstance.get("/carts");
   return response.data;
