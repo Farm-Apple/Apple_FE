@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import QuantitySelect from "@common/QuantitySelect";
 import styled from "styled-components";
 import ClearIcon from "@mui/icons-material/Clear";
+import { CartItemDelete } from "@src/api/cart/PostCart";
 // import { useCallback } from "react";
 
 const CartItemContainer = styled.ul`
@@ -121,6 +122,12 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
     },
     [item.product.price]
   );
+  console.log(item);
+  const handelDeleteClick = () => {
+    CartItemDelete(item.id);
+    console.log("됐나?");
+  };
+
   return (
     <CartItemContainer>
       <CartItemList>
@@ -140,7 +147,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           <Price>{Quantity.toLocaleString()}</Price>
           <OrderButton>주문하기</OrderButton>
         </ProductTotalPrice>
-        <DeleteButton>
+        <DeleteButton onClick={handelDeleteClick}>
           <ClearIcon />
         </DeleteButton>
       </CartItemList>

@@ -13,3 +13,8 @@ export const PostCart = async (CartItem: CartItem) => {
   const response = await postInstance.post("/carts", CartItem);
   return response.data;
 };
+
+export const CartItemDelete = async (cart_id: any) => {
+  const response = await postInstance.delete(`/carts/${cart_id}`);
+  return response.data;
+};
