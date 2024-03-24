@@ -32,6 +32,7 @@ const DeliveryFormInputDefault = styled.input`
     padding:1rem;
     border:1px solid #c4c4c4;
     outline:none;
+    font-size:1.6rem;
 `
 const DeliveryFormInputShort = styled(DeliveryFormInputDefault)`
     width:100px;

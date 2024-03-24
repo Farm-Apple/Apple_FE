@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {GetOrderCompleteList} from "../../api/auth/auth.ts";
-import {OrderListPropsType} from "@/page/OrderComplete/index.tsx";
+import {OrderListPropsType, SendDeliveryDataType} from "@/page/OrderComplete/index.tsx";
 
 const OrderCompleteContainer = styled.section`
   padding:3rem 20rem;
@@ -127,28 +127,29 @@ const NonOrderCompleteList = styled.p`
     font-weight:bold;
     text-align:center;
 `
-interface OrderList{
+export interface OrderList{
     created_at: string;
     id:number;
     price:number;
-    product: {
-        detail: string,
-        created_at: string,
-        id: number,
-        is_opened:number,
-        price:number,
-        product_name:string,
-        updated_at:string,
-        weight:string,
-    };
+    product: ProductType;
     product_id:number;
     product_image:null;
     quantity:number;
     updated_at:string;
     user_id:number;
 }
-export default function OrderCompleteList({totalPrice,setTotalPrice}: OrderListPropsType) {
-    // user 로그인 시 넘어올 데이터가 전역상태관리가 되던지, 여기서 한번 더 호출하던지 해야됨
+export interface ProductType{
+    detail: string,
+    created_at: string,
+    id: number,
+    is_opened:number,
+    price:number,
+    product_name:string,
+    updated_at:string,
+    weight:string,
+}
+export default function OrderCompleteList({totalPrice,setTotalPrice, setSendData}: OrderListPropsType) {
+    // user 로그인 시 넘어올 데이터가 전역상태관리가 되던지, 여기서 한번 더 호출하던지 해야됨 ( localStorage로 선조치 or token으로 user 배송기본정보 받아오는 api 개발 )
     const [orderList, setOrderList] = useState<OrderList[]>([]);
 
     useEffect(() => {
@@ -161,6 +162,15 @@ export default function OrderCompleteList({totalPrice,setTotalPrice}: OrderListP
                 })
 
                 setTotalPrice(totalPriceResult);
+                console.log(response);
+                let result:ProductType[] = [];
+                response.forEach((item:OrderList) => {
+                    result.push(item.product);
+                })
+                // 결제 정보에 대한 data order_items에 추가
+                setSendData((prevState) => {
+                    return {...prevState, order_items: result } as SendDeliveryDataType;
+                });
             })
     },[])
 
