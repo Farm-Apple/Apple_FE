@@ -7,10 +7,10 @@ const FooterContainer = styled.footer`
   justify-content: center;
   min-height: 10rem;
   gap: 1rem;
-  padding: 1rem 4rem;
+  padding: 1rem 10rem;
   border-top: 1px solid #e4ebf0;
   color: #81898f;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 30px;
 `;
