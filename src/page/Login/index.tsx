@@ -3,8 +3,7 @@ import logo from "../../assets/images/logo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import useInput from "../../hook/useInput";
 import { useCallback } from "react";
-import {Login} from "../../api/auth/auth";
-import { GetOrderCompleteList, Login } from "../../api/auth/auth";
+import { Login } from "../../api/auth/auth";
 import NavBar from "../../components/Navbar";
 // import NaverLoginBtn from "../../components/NaverLoginBtn";
 
