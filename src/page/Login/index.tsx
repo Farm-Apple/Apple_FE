@@ -74,7 +74,11 @@ function LoginPage() {
         password: password,
       });
       console.log(loginData.data.accessToken);
+      console.log(loginData.data);
       localStorage.setItem("token", loginData.data.accessToken);
+      localStorage.setItem("userName", loginData.data.user.name);
+      localStorage.setItem("userEmail", loginData.data.user.email);
+      localStorage.setItem("userPhone", loginData.data.user.phone);
       navigate("/");
 
     },

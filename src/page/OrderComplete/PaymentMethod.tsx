@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {OrderListPropsType} from "@/page/OrderComplete/index.tsx";
 
 const PaymentMethodContainer = styled.section`
     display:flex;
@@ -114,7 +115,7 @@ const ResultPayConfirm = styled.div`
 
 `
 
-export default function PaymentMethod() {
+export default function PaymentMethod({totalPrice}: OrderListPropsType) {
     return (
         <>
             <PaymentMethodContainer>
@@ -149,21 +150,21 @@ export default function PaymentMethod() {
                         <ResultPayInfoUl>
                             <ResultPayInfoLi>
                                 <p>- 상품금액</p>
-                                <p><span>46,500</span>원</p>
+                                <p><span>{totalPrice?.toLocaleString()}</span>원</p>
                             </ResultPayInfoLi>
                             <ResultPayInfoLi>
                                 <p>- 할인금액</p>
-                                <p><span>46,500</span>원</p>
+                                <p><span></span>원</p>
                             </ResultPayInfoLi>
                             <ResultPayInfoLi>
                                 <p>- 배송비</p>
-                                <p><span>46,500</span>원</p>
+                                <p><span></span>원</p>
                             </ResultPayInfoLi>
                         </ResultPayInfoUl>
                         <ResultPayInfoUl className="none">
                             <ResultPayInfoLi>
                                 <p>- 결제금액</p>
-                                <p><span className="red">46,500</span>원</p>
+                                <p><span className="red">{totalPrice?.toLocaleString()}</span>원</p>
                             </ResultPayInfoLi>
                         </ResultPayInfoUl>
                         <ResultPayConfirm>

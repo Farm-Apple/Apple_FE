@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {GetOrderCompleteList} from "../../api/auth/auth.ts";
+import {OrderListPropsType} from "@/page/OrderComplete/index.tsx";
 
 const OrderCompleteContainer = styled.section`
   padding:3rem 20rem;
@@ -120,6 +121,12 @@ const OrderTotalPrice = styled.p`
     font-weight:bold;
     color:#EB5757;
 `
+const NonOrderCompleteList = styled.p`
+    padding:5rem 0;
+    font-size:2.4rem;
+    font-weight:bold;
+    text-align:center;
+`
 interface OrderList{
     created_at: string;
     id:number;
@@ -140,10 +147,9 @@ interface OrderList{
     updated_at:string;
     user_id:number;
 }
-export default function OrderCompleteList() {
+export default function OrderCompleteList({totalPrice,setTotalPrice}: OrderListPropsType) {
     // user 로그인 시 넘어올 데이터가 전역상태관리가 되던지, 여기서 한번 더 호출하던지 해야됨
     const [orderList, setOrderList] = useState<OrderList[]>([]);
-    const [totalPrice, setTotalPrice] = useState<number>();
 
     useEffect(() => {
         GetOrderCompleteList()
@@ -158,7 +164,6 @@ export default function OrderCompleteList() {
             })
     },[])
 
-    console.log("이거",orderList);
     return (
         <OrderCompleteContainer>
             <OrderCompleteTitle>주문 / 결제하기</OrderCompleteTitle>
@@ -170,7 +175,7 @@ export default function OrderCompleteList() {
             </OrderListIndicatorUl>
 
             {
-                // orderList 받아와서 OrderListCardContainer 복붙
+                orderList.length > 0 ?
                 orderList.map((item) => {
                     return(
                         <>
@@ -190,6 +195,13 @@ export default function OrderCompleteList() {
                         </>
                     )
                 })
+                    :
+                    (
+                        <OrderListCardContainer>
+                            <NonOrderCompleteList>결제할 상품이 없습니다.</NonOrderCompleteList>
+                        </OrderListCardContainer>
+                    )
+
             }
             <OrderTotalPriceContainer>
                 <OrderTotalPriceTitle>총 주문금액</OrderTotalPriceTitle>
